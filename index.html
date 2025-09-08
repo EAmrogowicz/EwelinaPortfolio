@@ -14,25 +14,32 @@
   </head>
   <body>
     <header>
-      <div class="container header-flex">
+      <div class="container">
         <a href="#home" class="logo">
           <img src="media/logo.svg" alt="Ewelina's logo" />
         </a>
         <nav>
           <ul class="social-links">
             <li>
-              <a href="#" aria-label="LinkedIn"
+              <a
+                href="https://www.linkedin.com/in/ewelina-amrogowicz/"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
                 ><i class="fa-brands fa-linkedin-in"></i
               ></a>
             </li>
             <li>
-              <a href="#" aria-label="GitHub"
+              <a
+                href="https://github.com/EAmrogowicz"
+                aria-label="GitHub"
+                target="_blank"
+                rel="noopener noreferrer"
                 ><i class="fa-brands fa-github"></i
               ></a>
             </li>
-
             <li>
-              <a href="#" aria-label="Email"
+              <a href="mailto:ewelina@amrogowicz.com" aria-label="Email"
                 ><i class="fa-solid fa-envelope"></i
               ></a>
             </li>
@@ -50,10 +57,15 @@
       <section id="home" class="hero">
         <div class="smoke"></div>
         <div class="container">
-          <p class="subtitle stroke">Ewelina Amrogowicz</p>
+          <p class="subtitle text-bold">Ewelina Amrogowicz</p>
           <p class="subtitle">UX/UI Designer & Front‑End Developer</p>
           <h1>Design translates ideas<br />into experiences.</h1>
-          <a href="#profile" class="btn">View Profile <span>&rarr;</span></a>
+          <button class="btn-primary">
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="btn-text">View Profile</span>
+          </button>
         </div>
       </section>
 
