@@ -18,7 +18,7 @@ module.exports = {
         container: "1240px",
       },
       spacing: {
-        header: "72px",
+        header: "80px",
       },
     },
   },
