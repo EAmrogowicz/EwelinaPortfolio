@@ -32,37 +32,58 @@
   }
 
   header {
-    @apply py-4 border-b border-primary relative z-10;
+    @apply py-2 border-b border-primary relative z-10;
 
     .container {
       @apply flex justify-between items-center;
     }
   }
-  /* #region navigation */
-  .logo {
-    @apply inline-block;
-  }
-  .logo img {
-    @apply h-8 w-auto align-left;
-  }
-  .social-links {
-    @apply flex gap-2 list-none;
-  }
-  .social-links a {
-    @apply cursor-pointer inline-block justify-center items-center w-12 h-12 bg-transparent border border-transparent rounded-full text-primary transition-all duration-400;
+}
 
-    &:hover {
-      @apply scale-110 bg-accent text-primary;
-    }
-  }
-  .social-links .icon-accent {
-    @apply ml-4 border-primary bg-light-gray;
-  }
-  /* #endregion navigation */
+/* #region navigation */
+.logo {
+  display: inline-block;
+}
+.logo img {
+  height: 32px;
+  width: auto;
+  text-align: left;
+}
+.social-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+}
+.social-links a {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  color: var(--primary);
+  transition: all 0.4s;
+}
+
+.social-links a:hover {
+  transform: scale(1.1);
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.social-links .icon-accent {
+  margin-left: 1rem;
+  border: 1px solid var(--primary);
+  background: var(--light-gray);
 }
 .social-links i {
   font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem); /* 20px → 24px */
 }
+/* #endregion navigation */
 /* #region typography */
 h1 {
   font-size: clamp(2.5rem, 3rem + 2vw, 4rem); /* 40px to 64px */
@@ -187,7 +208,7 @@ button.btn-primary:hover .btn-text {
 .hero {
   position: relative;
   min-height: 100vh;
-  margin-top: -74px;
+  margin-top: -var(--header-height);
   display: flex;
   align-items: center;
   justify-content: flex-start;
