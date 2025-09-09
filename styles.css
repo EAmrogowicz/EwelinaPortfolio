@@ -134,7 +134,7 @@
 }
 
 .menu-main {
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid var(--gray);
   padding-right: 2rem;
 }
 
@@ -180,13 +180,6 @@
   opacity: 1;
 }
 
-.menu-features h3 {
-  color: var(--gray);
-  font-size: 1.125rem;
-  margin-bottom: 1rem;
-  font-weight: 200;
-}
-
 .feature-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -223,20 +216,6 @@
   letter-spacing: 0.05em;
 }
 
-.feature-card h4 {
-  color: var(--bg);
-  font-size: 1.125rem;
-  margin-top: auto; /* push heading to the bottom of the card */
-  margin-bottom: 0;
-  font-family: var(--font-accent);
-}
-
-.feature-card p {
-  color: var(--gray);
-  font-size: 0.875rem;
-  line-height: 1.4;
-}
-
 /* feature icon positioned bottom-right at 24x24px */
 .feature-card .feature-icon {
   position: absolute;
@@ -260,7 +239,7 @@
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-right: 0;
-    padding-bottom: 2rem;
+    padding-bottom: 4.8rem;
   }
 
   .feature-cards {
@@ -268,11 +247,58 @@
   }
 }
 
+/* Ensure horizontal scrolling for projects row on tablet devices (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* target the projects scroller via a stable class to avoid applying Tailwind utilities in CSS */
+  #projects .container > .projects-row {
+    overflow-x: auto !important; /* keep horizontal scroll on tablet */
+    -webkit-overflow-scrolling: touch; /* smooth native scrolling on iOS */
+    scroll-snap-type: x mandatory; /* ensure snap behavior on scroll */
+    padding-bottom: 0.5rem; /* give space for scrollbar if present */
+    padding-top: 1rem; /* add top padding so scrollbar area has breathing room */
+    /* hide scrollbar while keeping scroll functionality */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+  /* Hide WebKit scrollbar */
+  #projects .container > .projects-row::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+
+/* ensure each project article keeps a minimum width on small screens
+   so absolute-positioned elements (icons) can overflow and be scrolled into view */
+@media (max-width: 767px) {
+  #projects .projects-row article {
+    min-width: 75vw; /* match the w-[75vw] used in markup for small screens */
+    flex: 0 0 auto; /* prevent shrinking so horizontal scroll works */
+  }
+}
+
+/* tablet: make each article take 2/3 of the scroller so part of the next card is visible */
+@media (min-width: 768px) and (max-width: 1024px) {
+  #projects .projects-row article {
+    flex: 0 0 66.6667%; /* w-2/3 */
+    min-width: 66.6667%;
+  }
+}
+
+/* Desktop: ensure three columns fill the container evenly accounting for gaps
+   (gap at desktop uses the sm:gap-8 value = 2rem; two gaps between three items = 4rem) */
+@media (min-width: 1025px) {
+  #projects .projects-row {
+    /* ensure the gap matches Tailwind utility at this breakpoint */
+    gap: 2rem;
+  }
+  #projects .projects-row article {
+    flex: 0 0 calc((100% - 4rem) / 3);
+    max-width: calc((100% - 4rem) / 3);
+  }
+}
+
 .mobile-menu nav ul li a {
-  color: var(--bg);
-  font-size: clamp(1rem, 1.25vw, 1.5rem); /* 16px -> 24px */
-  text-decoration: none;
-  font-family: var(--font-accent);
   transition: color 0.3s ease;
   display: flex;
   justify-content: flex-start;
@@ -281,12 +307,6 @@
   text-align: left;
   width: 100%;
   position: relative;
-  padding: 0.5rem 1rem;
-}
-
-.mobile-menu nav ul li span {
-  font-size: clamp(1.875rem, 2.25vw, 2.75rem); /* 30px -> 44px */
-  line-height: 1;
 }
 
 .mobile-menu nav ul li a::after {
@@ -310,23 +330,16 @@
 /* #endregion navigation */
 /* #region typography */
 
-.subtitle {
-  font-size: clamp(1rem, 1.2rem + 1vw, 1.5rem); /* 16px to 24px */
-  line-height: 1.2;
-  letter-spacing: 0.05rem;
-  color: var(--secondary);
-  font-family: var(--font-accent);
-}
 .text-withLine {
   display: flex;
   align-items: center;
 }
-.text-withLine:after {
+.text-withLine:before {
   content: "";
-  flex-grow: 1; /* fill remaining space */
+  width: 4rem;
   height: 1px;
   background: var(--secondary);
-  margin-left: 1rem; /* space between text and line */
+  margin-right: 1rem;
 }
 
 /* #endregion typography */
@@ -409,7 +422,7 @@ button.btn-primary:hover .btn-text {
   color: var(--bg);
 }
 /* #endregion btn */
-/* hero */
+/* sections */
 .hero {
   background: linear-gradient(
       to top,
@@ -419,42 +432,6 @@ button.btn-primary:hover .btn-text {
     url("../media/smokeBg.webp");
   background-size: cover;
   background-position: center;
-}
-
-.projects {
-  padding: 4rem 0;
-}
-
-.projects h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.projects .grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-.project-card {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s;
-}
-
-.project-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.details-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
 }
 
 .design-thinking {
@@ -530,4 +507,52 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Project image hover: accent overlay (40%) and project-click icon color change */
+.project-image {
+  position: relative; /* already present in markup, ensure stacking context */
+  overflow: hidden;
+}
+.project-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(231, 98, 104, 0.4); /* --accent (#e76268) at 40% */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1; /* overlay above the img but below the icon */
+  pointer-events: none;
+}
+.project-image:hover::after {
+  opacity: 1;
+}
+
+/* project-click icon should sit above the overlay and change color to primary on hover */
+.project-image .project-click {
+  z-index: 2;
+  color: var(--accent);
+  transition: color 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+  /* default color left untouched; if the SVG uses currentColor this will work */
+}
+.project-image:hover .project-click {
+  color: var(--primary);
+  /* fallback for non-currentColor SVGs: slightly reduce opacity so the overlay shows through */
+  opacity: 1;
+}
+
+/* Align project card footers (icons + buttons) to the same vertical level */
+#projects .projects-row article {
+  display: flex;
+  flex-direction: column;
+}
+
+/* push the icon row and button to the bottom of the card so they align across cards */
+#projects .projects-row article > .flex {
+  margin-top: auto;
+}
+
+/* ensure the icon group doesn't wrap and stays vertically centered */
+#projects .projects-row article > .flex i {
+  align-self: center;
 }
