@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ewelina — Portfolio</title>
+    <!-- Compiled Tailwind CSS -->
     <link href="./dist/styles.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
-    <link href="/dist/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header>
@@ -94,17 +93,34 @@
     </header>
 
     <main>
-      <section id="home" class="hero">
-        <div class="smoke"></div>
+      <section
+        id="home"
+        class="hero relative min-h-dvh flex items-end sm:items-center justify-start text-left overflow-hidden pb-24 sm:pb-0"
+      >
         <div class="container">
-          <p class="subtitle text-bold text-accent">Ewelina Amrogowicz</p>
-          <p class="subtitle">UX/UI Designer & Front‑End Developer</p>
-          <h1>Design translates ideas<br />into experiences.</h1>
+          <p
+            class="text-lg sm:text-2xl font-extrabold leading-normal text-secondary font-accent text-shadow-xs"
+          >
+            Ewelina Amrogowicz
+          </p>
+          <p
+            class="text-lg sm:text-2xl leading-normal text-secondary font-accent"
+          >
+            UX/UI Designer & Front‑End Developer
+          </p>
+          <h1
+            class="text-4xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-wider my-16 sm:my-20"
+          >
+            Design translates ideas<br />into experiences.
+          </h1>
           <button class="btn-primary">
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
             </span>
-            <span class="btn-text">View Profile</span>
+            <span
+              class="btn-text font-accent tracking-wide text-base sm:text-lg text-accent font-bold leading-[1.6] text-center uppercase"
+              >View Profile</span
+            >
           </button>
         </div>
       </section>
@@ -186,7 +202,7 @@
     <footer>
       <div class="container footer-flex">
         <span class="logo">
-          <img src="../media/logo.svg" alt="Ewelina's logo" />
+          <img src="media/logo.svg" alt="Ewelina's logo" />
         </span>
         <span>Copyright © 2025 | All Rights Reserved</span>
       </div>
