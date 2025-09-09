@@ -127,14 +127,13 @@
 
 .mobile-menu .menu-grid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr 1fr;
   gap: 1.6rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
 .menu-main {
-  border-right: 1px solid var(--gray);
   padding-right: 2rem;
 }
 
@@ -173,6 +172,8 @@
   opacity: 0;
   transition: all 0.3s ease;
   transition-delay: 0.3s;
+  border-left: 1px solid var(--gray);
+  padding-left: 1.6rem;
 }
 
 .mobile-menu.active .menu-features {
@@ -189,7 +190,6 @@
 }
 
 .feature-card {
-  background: rgba(255, 255, 255, 0.05);
   padding: 1rem;
   border-radius: 0;
   transition: all 0.3s ease;
@@ -199,11 +199,83 @@
   flex-direction: column;
   justify-content: flex-start;
   position: relative; /* for icon positioning */
-  min-height: 10rem;
+  /* make square cards */
+  aspect-ratio: 1 / 1;
+  min-height: 10rem; /* fallback when aspect-ratio isn't supported */
+}
+.feature-card {
+  /* make image backgrounds behave like an <img> cover */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; /* keep overlay contained */
+  color: #fff; /* default text on image */
+}
+
+/* explicit images for the two feature cards (keeps markup-free selectors stable) */
+.feature-cards .feature-card:nth-child(1) {
+  background-image: url("../media/project-gehMockup.webp");
+}
+.feature-cards .feature-card:nth-child(2) {
+  background-image: url("../media/project-eduMockup.webp");
+}
+
+/* accent overlay (transparent by default, appears on hover) */
+.feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(231, 98, 104, 0); /* accent colour used with alpha */
+  transition: background 0.28s ease, opacity 0.28s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.feature-card:hover::after,
+.mobile-menu.active .feature-card:hover::after {
+  background: rgba(231, 98, 104, 0.6); /* show accent overlay on hover */
+}
+
+/* ensure card content appears above overlay */
+.feature-card .card-tag,
+.feature-card p {
+  position: relative;
+  z-index: 2;
+}
+
+/* paragraphs inside feature cards should use the primary (dark) colour */
+.feature-card p {
+  color: var(--primary);
+}
+
+/* feature icon: accent by default, switch to primary on hover/focus */
+.feature-card .feature-icon {
+  color: var(--accent);
+  transition: color 0.22s ease, transform 0.22s ease;
+  z-index: 3; /* ensure it's above overlay */
+}
+.feature-card:hover .feature-icon,
+.feature-card:focus-within .feature-icon,
+.mobile-menu.active .feature-card:hover .feature-icon {
+  color: var(--primary);
+}
+
+/* keyboard accessibility: show overlay on focus-visible */
+.feature-card:focus-visible::after {
+  background: rgba(231, 98, 104, 0.25);
+}
+.feature-card .feature-icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0.95;
+  z-index: 3; /* above overlay */
 }
 
 .feature-card:hover {
-  background: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
 
@@ -219,8 +291,8 @@
 /* feature icon positioned bottom-right at 24x24px */
 .feature-card .feature-icon {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
   right: 0.75rem;
   bottom: 0.75rem;
   object-fit: contain;
@@ -241,9 +313,9 @@
     padding-right: 0;
     padding-bottom: 4.8rem;
   }
-
-  .feature-cards {
-    grid-template-columns: 1fr;
+  .menu-features {
+    border: none;
+    padding: 0;
   }
 }
 
@@ -518,7 +590,7 @@ footer {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(231, 98, 104, 0.4); /* --accent (#e76268) at 40% */
+  background: rgba(231, 98, 104, 0.6); /* --accent (#e76268) at 40% */
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 1; /* overlay above the img but below the icon */
