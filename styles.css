@@ -55,11 +55,11 @@
   }
 
   .h2 {
-    @apply text-2xl font-bold leading-tight mb-12;
+    @apply text-3xl font-bold leading-tight mb-2;
   }
   @screen sm {
     .h2 {
-      @apply text-4xl;
+      @apply text-4xl mb-4;
     }
   }
 
@@ -473,7 +473,7 @@ button.btn-primary:hover .btn-text {
   background: linear-gradient(
       to bottom,
       rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0) 40%
+      rgba(255, 255, 255, 0) 60%
     ),
     url("../media/smokeBgFooter.webp");
   background-size: cover;
@@ -566,7 +566,6 @@ footer {
 }
 .design-tabs .tabs {
   display: flex;
-  gap: 2rem;
   align-items: flex-end;
 }
 .design-tabs .tab {
@@ -582,7 +581,6 @@ footer {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 0.5rem;
   padding: 0.5rem 0;
   transform: all 0.3s ease;
 }
@@ -616,7 +614,7 @@ footer {
   grid-template-columns: 1fr 2fr;
   gap: 4rem;
   align-items: center;
-  padding: 1em 0;
+  padding: 0;
 }
 .design-tabs .panel-text {
   max-width: 40rem;
@@ -693,8 +691,7 @@ footer {
 @media (max-width: 767px) {
   .design-tabs .panel {
     grid-template-columns: 1fr;
-    width: 100%;
-    flex: 0 0 100%;
+    gap: 1rem;
   }
   .design-tabs .tabs {
     gap: 1rem;

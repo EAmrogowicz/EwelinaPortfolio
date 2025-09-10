@@ -385,3 +385,20 @@ document.addEventListener("DOMContentLoaded", () => {
     track.style.transition = "";
   });
 });
+
+// Attach mailto behaviour to CTA button without changing markup
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const ctaButton = document.querySelector("#cta .btn-primary");
+    if (!ctaButton) return;
+
+    ctaButton.addEventListener("click", (e) => {
+      // preserve any default behaviour for forms etc. (there are none)
+      // Open user's mail client with prefilled recipient
+      window.location.href = "mailto:ewelina@amrogowicz.com";
+    });
+  } catch (err) {
+    // fail silently; this feature is progressive enhancement
+    // console.error(err);
+  }
+});
