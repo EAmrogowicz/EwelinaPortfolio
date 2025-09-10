@@ -57,7 +57,7 @@
               <li>
                 <a
                   href="#projects"
-                  class="font-accent text-light text-lg sm:text-2xl tracking-wide py-2 px-4"
+                  class="font-accent text-light text-lg sm:text-2xl tracking-wide"
                   ><span class="text-4xl sm:text-5xl leading-none">01</span
                   >Profile</a
                 >
@@ -65,7 +65,7 @@
               <li>
                 <a
                   href="#design-thinking"
-                  class="font-accent text-light text-lg sm:text-2xl tracking-wide py-2 px-4"
+                  class="font-accent text-light text-lg sm:text-2xl tracking-wide"
                   ><span class="text-4xl sm:text-5xl leading-none">02</span
                   >Latest Works</a
                 >
@@ -73,7 +73,7 @@
               <li>
                 <a
                   href="#contact"
-                  class="font-accent text-light text-lg sm:text-2xl tracking-wide py-2 px-4"
+                  class="font-accent text-light text-lg sm:text-2xl tracking-wide"
                   ><span class="text-4xl sm:text-5xl leading-none">03</span
                   >Contact</a
                 >
@@ -130,6 +130,7 @@
     </header>
 
     <main>
+      <!-- section: HERO -->
       <section
         id="home"
         class="hero relative min-h-dvh flex items-end sm:items-center justify-start text-left overflow-hidden pb-28 sm:pb-0"
@@ -140,11 +141,7 @@
           >
             Ewelina Amrogowicz
           </p>
-          <p
-            class="p-subtitle"
-          >
-            UX/UI Designer & Front‑End Developer
-          </p>
+          <p class="p-subtitle">UX/UI Designer & Front‑End Developer</p>
           <h1 class="h1">Design translates ideas<br />into experiences.</h1>
           <button class="btn-primary">
             <span class="circle" aria-hidden="true">
@@ -158,6 +155,7 @@
         </div>
       </section>
 
+      <!-- section: PROJECTS -->
       <section id="projects" class="relative min-h-dvh overflow-hidden py-20">
         <div class="container">
           <h2 class="h2">My latest projects!</h2>
@@ -199,7 +197,7 @@
                 Global Education HUB
               </h3>
 
-              <p class="p-secondary min-h-20">
+              <p class="p-body min-h-20 text-secondary">
                 A platform offering one-on-one guidance for students and
                 education partners, covering university selection, applications
                 and settling in the UK or abroad.
@@ -212,7 +210,6 @@
                 <i class="fa-brands fa-html5 i-tool"></i>
                 <i class="fa-brands fa-js i-tool"></i>
                 <i class="fa-brands fa-css3 i-tool"></i>
-                ></i>
               </div>
               <button class="btn-primary my-10">
                 <span class="circle" aria-hidden="true">
@@ -257,7 +254,7 @@
               </div>
               <h3 class="h3 border-t border-b border-primary">eduHUB Live</h3>
 
-              <p class="p-secondary min-h-20">
+              <p class="p-body min-h-20 text-secondary">
                 A recognition platform for counsellor excellence, reimagined as
                 a regional hub for educational collaboration, innovation, and
                 growth across MENA.
@@ -316,7 +313,7 @@
                 Global Study UK
               </h3>
 
-              <p class="p-secondary min-h-20">
+              <p class="p-body min-h-20 text-secondary">
                 No.1 student recruitment agency in the Middle East & North
                 Africa for UK education, partnering with 110+ institutions
                 worldwide.
@@ -344,56 +341,208 @@
         </div>
       </section>
 
-      <section id="design-thinking" class="design-thinking">
+      <!-- section: DESIGN THINKING -->
+      <section
+        id="design-thinking"
+        class="relative min-h-dvh overflow-hidden py-20"
+      >
         <div class="container">
           <h2 class="h2">Design Thinking</h2>
-          <div class="grid three-cols">
-            <div>
-              <h3 class="h3">01 Process</h3>
-              <p>
-                Design thinking isn’t a checklist — I approach every project by
-                understanding users, sketching fast, and validating outcomes
-                with testing and feedback.
-              </p>
+          <div class="design-tabs">
+            <div
+              class="tabs flex flex-row flex-nowrap gap-4 sm:gap-8 items-stretch"
+              role="tablist"
+              aria-label="Design thinking tabs"
+            >
+              <button
+                type="button"
+                class="tab active h3"
+                role="tab"
+                aria-selected="true"
+                data-index="0"
+                aria-controls="panel-0"
+              >
+                <span class="text-sm">01</span>Process
+              </button>
+              <button
+                type="button"
+                class="tab h3"
+                role="tab"
+                aria-selected="false"
+                data-index="1"
+                aria-controls="panel-1"
+              >
+                <span class="text-sm">02</span>Branding
+              </button>
+              <button
+                type="button"
+                class="tab h3"
+                role="tab"
+                aria-selected="false"
+                data-index="2"
+                aria-controls="panel-2"
+              >
+                <span class="text-sm">03</span>Development
+              </button>
             </div>
-            <div>
-              <h3 class="h3">02 Branding</h3>
-              <p>
-                I distill the essence of a product into a coherent identity
-                across logo, type, motion, and voice.
-              </p>
+
+            <div class="carousel" aria-live="polite">
+              <div class="carousel-track">
+                <div
+                  id="panel-0"
+                  class="panel"
+                  role="tabpanel"
+                  aria-hidden="false"
+                >
+                  <div class="panel-text">
+                    <p class="p-body">
+                      For me, design thinking isn’t a rigid checklist — it’s how
+                      I approach every project. I start by
+                      <span class="font-bold">understanding</span>
+                      potential users (what excites them, what frustrates them)
+                      and then
+                      <span class="font-bold"
+                        >define the real problem we’re solving</span
+                      >
+                      . From there, I like to
+                      <span class="font-bold">sketch</span>,
+                      <span class="font-bold">test</span>, and
+                      <span class="font-bold">break ideas</span> quickly,
+                      turning concepts into prototypes that I can refine.
+                    </p>
+                    <p class="p-body">
+                      I rely on
+                      <span class="font-bold">hands-on testing</span> and
+                      feedback to push past assumptions, and I always validate
+                      the final outcome against both user needs and business
+                      goals. This process keeps me grounded in strategy while
+                      giving me the freedom to experiment.
+                    </p>
+                  </div>
+                  <div class="panel-media">
+                    <img
+                      src="media/design-process.svg"
+                      alt="Design process diagram"
+                    />
+                  </div>
+                </div>
+
+                <div
+                  id="panel-1"
+                  class="panel"
+                  role="tabpanel"
+                  aria-hidden="true"
+                >
+                  <div class="panel-text">
+                    <p class="p-body">
+                      Your brand identity sits at the heart of my approach. I
+                      don’t just design websites — I build digital experiences
+                      that stay true to your visual language and values.
+                    </p>
+                    <p class="p-body">
+                      From shaping a
+                      <span class="font-bold">graphic identity</span> and
+                      creating <span class="font-bold">brand guidelines</span>,
+                      to translating that look and feel into a
+                      <span class="font-bold">cohesive web design</span> and
+                      fully <span class="font-bold">developed website</span>, I
+                      ensure consistency at every stage. My goal is simple: to
+                      carry your brand seamlessly across platforms, so your
+                      users always know it’s you.
+                    </p>
+                  </div>
+                  <div class="panel-media">
+                    <img
+                      src="media/design-brand.webp"
+                      alt="Design process diagram"
+                    />
+                  </div>
+                </div>
+
+                <div
+                  id="panel-2"
+                  class="panel"
+                  role="tabpanel"
+                  aria-hidden="true"
+                >
+                  <div class="panel-text">
+                    <p class="p-body">
+                      No templates, no shortcuts — just custom websites built
+                      with your brand and users in mind. As a designer and
+                      developer, I
+                      <span class="font-bold">create experiences</span> that
+                      marry strong visuals with seamless functionality.
+                    </p>
+                    <p class="p-body">
+                      Design doesn’t stop at looks — I
+                      <span class="font-bold">bring ideas to life</span> with
+                      clean, purposeful code. Using custom HTML, CSS, and
+                      JavaScript, I craft unique layouts, interactive elements,
+                      and fine-tuned performance that go beyond templates or
+                      page builders.
+                    </p>
+                    <p class="p-body">
+                      Every project is
+                      <span class="font-bold">designed with purpose</span>, from
+                      concept to launch, ensuring every detail aligns with your
+                      goals, enhances the user experience, and delivers a
+                      website that doesn’t just look good — it works hard for
+                      you.
+                    </p>
+                  </div>
+                  <div class="panel-media">
+                    <video
+                      data-drive-id="138TJ4tIcx-8uOS0x36R8PBgajZSfEbpk"
+                      src="https://drive.google.com/uc?export=download&id=138TJ4tIcx-8uOS0x36R8PBgajZSfEbpk"
+                      controls
+                      loop
+                      muted
+                      playsinline
+                      preload="metadata"
+                      aria-label="Design process screen recording"
+                    >
+                      Your browser does not support the video element. You can
+                      <a
+                        href="https://drive.google.com/file/d/138TJ4tIcx-8uOS0x36R8PBgajZSfEbpk/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >view or download the recording on Google Drive</a
+                      >.
+                    </video>
+                    <img
+                      class="video-fallback"
+                      src="media/design-dev.webp"
+                      alt="Design process fallback image"
+                    />
+                    <button class="video-play-overlay" aria-label="Play video">
+                      <svg
+                        width="48"
+                        height="48"
+                        viewBox="0 0 48 48"
+                        aria-hidden="true"
+                      >
+                        <circle cx="24" cy="24" r="23" fill="rgba(0,0,0,0.5)" />
+                        <polygon points="20,16 34,24 20,32" fill="#fff" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 class="h3">03 Development</h3>
-              <p>
-                I ship what I design. Modern, accessible front‑end builds keep
-                ideas honest from sketch to deploy.
-              </p>
-            </div>
-          </div>
-          <div class="diagram">
-            <ul>
-              <li>emphasise</li>
-              <li>define</li>
-              <li>prototype</li>
-              <li>test</li>
-              <li>iterate</li>
-            </ul>
           </div>
         </div>
       </section>
 
+      <!-- section: CTA -->
       <section
         id="cta"
         class="cta relative min-h-dvh flex items-end sm:items-center justify-start text-left overflow-hidden pb-28 sm:pb-0"
       >
         <div class="container">
-          <p
-            class="p-subtitle"
-          >
+          <p class="p-subtitle">
             I love exploring new designs, methods, and creating new designs!
           </p>
-          <h1 class="h1">Let’s start a project <br />together.</h1>
+          <h2 class="h1">Let’s start a project <br />together.</h2>
           <button class="btn-primary">
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>

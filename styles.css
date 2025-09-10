@@ -39,18 +39,15 @@
     }
   }
 
-  /* Headline components (moved here so @apply and @screen are processed by Tailwind) */
+  /* Headline components */
   .h1 {
-    /* base: mobile-first */
     @apply text-4xl font-bold leading-tight tracking-wider my-12;
   }
-
   @screen sm {
     .h1 {
       @apply text-6xl my-20;
     }
   }
-
   @screen md {
     .h1 {
       @apply text-7xl;
@@ -60,7 +57,6 @@
   .h2 {
     @apply text-2xl font-bold leading-tight mb-12;
   }
-
   @screen sm {
     .h2 {
       @apply text-4xl;
@@ -68,17 +64,16 @@
   }
 
   .h3 {
-    @apply text-xl leading-tight py-6;
+    @apply text-xl leading-tight py-2;
   }
-
   @screen sm {
     .h3 {
-      @apply text-2xl py-8;
+      @apply text-2xl py-3;
     }
   }
 
-  .p-secondary {
-    @apply text-sm sm:text-base leading-normal py-2 sm:py-3 text-secondary;
+  .p-body {
+    @apply text-sm sm:text-base leading-normal py-2 sm:py-3;
   }
   .p-subtitle {
     @apply text-lg sm:text-2xl leading-normal text-secondary font-accent;
@@ -89,35 +84,7 @@
   }
 }
 
-/* Headline components */
-.h1 {
-  /* base: mobile-first */
-  @apply text-4xl font-bold leading-tight tracking-wider my-12;
-}
-
-@screen sm {
-  .h1 {
-    @apply text-6xl my-20;
-  }
-}
-
-@screen md {
-  .h1 {
-    @apply text-7xl;
-  }
-}
-
-.h2 {
-  @apply text-2xl font-bold leading-tight mb-12;
-}
-
-@screen sm {
-  .h2 {
-    @apply text-4xl;
-  }
-}
-
-/* #region navigation */
+/* #region Header */
 .logo {
   display: inline-block;
 }
@@ -126,6 +93,7 @@
   width: auto;
   text-align: left;
 }
+
 .social-links {
   display: flex;
   gap: 0.2rem;
@@ -145,37 +113,34 @@
   color: var(--primary);
   transition: all 0.4s ease;
 }
-
 .social-links a:hover {
   background: var(--accent);
 }
-
 .social-links .icon-accent {
   margin-left: 1rem;
   border: 1px solid var(--primary);
 }
 .social-links i {
-  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem); /* 20px → 24px */
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
 }
+/* #endregion Header */
 
-/* Full Screen Menu */
+/* #region Full screen / mobile menu */
 .menu-toggle {
-  display: flex !important; /* Override any potential hiding */
+  display: flex !important;
   z-index: 100;
   position: relative;
 }
-
 .menu-toggle i {
   transition: transform 0.4s ease;
 }
-
 .menu-toggle.active i {
   transform: rotate(90deg);
 }
 
 .mobile-menu {
   position: absolute;
-  top: calc(100% + 1px); /* Account for the border width */
+  top: calc(100% + 1px);
   left: 0;
   right: 0;
   width: 100%;
@@ -187,14 +152,14 @@
   transform: scaleY(0);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out,
+    visibility 0.3s;
   z-index: 98;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   max-height: calc(100vh - 100%);
   overflow-y: auto;
 }
-
 .mobile-menu.active {
   transform: scaleY(1);
   opacity: 1;
@@ -210,29 +175,23 @@
   padding-bottom: 2rem;
 }
 
-.menu-main {
-  padding-right: 2rem;
-}
-
+/* Menu main / features */
 .menu-main ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .menu-main ul li {
-  margin: 1rem 0;
+  margin: 1.6rem 0;
   transform: translateY(20px);
   opacity: 0;
   transition: all 0.3s ease;
 }
-
 .mobile-menu.active .menu-main ul li {
   transform: translateY(0);
   opacity: 1;
 }
-
-/* Stagger the animation for each list item */
+/* Stagger */
 .menu-main ul li:nth-child(1) {
   transition-delay: 0.1s;
 }
@@ -243,7 +202,6 @@
   transition-delay: 0.3s;
 }
 
-/* Features section */
 .menu-features {
   transform: translateY(20px);
   opacity: 0;
@@ -252,12 +210,12 @@
   border-left: 1px solid var(--gray);
   padding-left: 1.6rem;
 }
-
 .mobile-menu.active .menu-features {
   transform: translateY(0);
   opacity: 1;
 }
 
+/* Feature cards */
 .feature-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -265,7 +223,6 @@
   align-items: stretch;
   grid-auto-rows: 1fr;
 }
-
 .feature-card {
   padding: 1rem;
   border-radius: 0;
@@ -275,21 +232,17 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  position: relative; /* for icon positioning */
-  /* make square cards */
+  position: relative;
   aspect-ratio: 1 / 1;
-  min-height: 10rem; /* fallback when aspect-ratio isn't supported */
-}
-.feature-card {
-  /* make image backgrounds behave like an <img> cover */
+  min-height: 10rem;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  overflow: hidden; /* keep overlay contained */
-  color: #fff; /* default text on image */
+  overflow: hidden;
+  color: #fff;
 }
 
-/* explicit images for the two feature cards (keeps markup-free selectors stable) */
+/* explicit background images */
 .feature-cards .feature-card:nth-child(1) {
   background-image: url("../media/project-gehMockup.webp");
 }
@@ -297,61 +250,28 @@
   background-image: url("../media/project-eduMockup.webp");
 }
 
-/* accent overlay (transparent by default, appears on hover) */
+/* overlay & interactions */
 .feature-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(231, 98, 104, 0); /* accent colour used with alpha */
+  background: rgba(231, 98, 104, 0);
   transition: background 0.28s ease, opacity 0.28s ease;
   pointer-events: none;
   z-index: 1;
 }
 .feature-card:hover::after,
 .mobile-menu.active .feature-card:hover::after {
-  background: rgba(231, 98, 104, 0.6); /* show accent overlay on hover */
+  background: rgba(231, 98, 104, 0.6);
 }
-
-/* ensure card content appears above overlay */
 .feature-card .card-tag,
 .feature-card p {
   position: relative;
   z-index: 2;
 }
-
-/* paragraphs inside feature cards should use the primary (dark) colour */
 .feature-card p {
   color: var(--primary);
 }
-
-/* feature icon: accent by default, switch to primary on hover/focus */
-.feature-card .feature-icon {
-  color: var(--accent);
-  transition: color 0.22s ease, transform 0.22s ease;
-  z-index: 3; /* ensure it's above overlay */
-}
-.feature-card:hover .feature-icon,
-.feature-card:focus-within .feature-icon,
-.mobile-menu.active .feature-card:hover .feature-icon {
-  color: var(--primary);
-}
-
-/* keyboard accessibility: show overlay on focus-visible */
-.feature-card:focus-visible::after {
-  background: rgba(231, 98, 104, 0.25);
-}
-.feature-card .feature-icon {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  right: 0.75rem;
-  bottom: 0.75rem;
-  object-fit: contain;
-  pointer-events: none;
-  opacity: 0.95;
-  z-index: 3; /* above overlay */
-}
-
 .feature-card:hover {
   transform: translateY(-2px);
 }
@@ -365,8 +285,10 @@
   letter-spacing: 0.05em;
 }
 
-/* feature icon positioned bottom-right at 24x24px */
+/* feature icon: single consolidated rule */
 .feature-card .feature-icon {
+  color: var(--accent);
+  transition: color 0.22s ease, transform 0.22s ease;
   position: absolute;
   width: 40px;
   height: 40px;
@@ -375,78 +297,18 @@
   object-fit: contain;
   pointer-events: none;
   opacity: 0.95;
+  z-index: 3;
+}
+.feature-card:hover .feature-icon,
+.feature-card:focus-within .feature-icon,
+.mobile-menu.active .feature-card:hover .feature-icon {
+  color: var(--primary);
+}
+.feature-card:focus-visible::after {
+  background: rgba(231, 98, 104, 0.25);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .mobile-menu .menu-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .menu-main {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-right: 0;
-    padding-bottom: 4.8rem;
-  }
-  .menu-features {
-    border: none;
-    padding: 0;
-  }
-}
-
-/* Ensure horizontal scrolling for projects row on tablet devices (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-  /* target the projects scroller via a stable class to avoid applying Tailwind utilities in CSS */
-  #projects .container > .projects-row {
-    overflow-x: auto !important; /* keep horizontal scroll on tablet */
-    -webkit-overflow-scrolling: touch; /* smooth native scrolling on iOS */
-    scroll-snap-type: x mandatory; /* ensure snap behavior on scroll */
-    padding-bottom: 0.5rem; /* give space for scrollbar if present */
-    padding-top: 1rem; /* add top padding so scrollbar area has breathing room */
-    /* hide scrollbar while keeping scroll functionality */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE 10+ */
-  }
-  /* Hide WebKit scrollbar */
-  #projects .container > .projects-row::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-  }
-}
-
-/* ensure each project article keeps a minimum width on small screens
-   so absolute-positioned elements (icons) can overflow and be scrolled into view */
-@media (max-width: 767px) {
-  #projects .projects-row article {
-    min-width: 75vw; /* match the w-[75vw] used in markup for small screens */
-    flex: 0 0 auto; /* prevent shrinking so horizontal scroll works */
-  }
-}
-
-/* tablet: make each article take 2/3 of the scroller so part of the next card is visible */
-@media (min-width: 768px) and (max-width: 1024px) {
-  #projects .projects-row article {
-    flex: 0 0 66.6667%; /* w-2/3 */
-    min-width: 66.6667%;
-  }
-}
-
-/* Desktop: ensure three columns fill the container evenly accounting for gaps
-   (gap at desktop uses the sm:gap-8 value = 2rem; two gaps between three items = 4rem) */
-@media (min-width: 1025px) {
-  #projects .projects-row {
-    /* ensure the gap matches Tailwind utility at this breakpoint */
-    gap: 2rem;
-  }
-  #projects .projects-row article {
-    flex: 0 0 calc((100% - 4rem) / 3);
-    max-width: calc((100% - 4rem) / 3);
-  }
-}
-
+/* navigation links inside mobile menu */
 .mobile-menu nav ul li a {
   transition: color 0.3s ease;
   display: flex;
@@ -457,42 +319,25 @@
   width: 100%;
   position: relative;
 }
-
 .mobile-menu nav ul li a::after {
   content: "";
   position: absolute;
   width: 0;
   height: 2px;
   bottom: 0;
-  left: 1rem;
+  left: 0;
   background: var(--accent);
   transition: width 0.3s ease;
 }
-
 .mobile-menu nav ul li a:hover {
   color: var(--accent);
 }
-
 .mobile-menu nav ul li a:hover::after {
-  width: calc(100% - 2rem);
+  width: calc(100% - 0.5rem);
 }
-/* #endregion navigation */
-/* #region typography */
+/* #endregion */
 
-.text-withLine {
-  display: flex;
-  align-items: center;
-}
-.text-withLine:before {
-  content: "";
-  width: 4rem;
-  height: 1px;
-  background: var(--secondary);
-  margin-right: 1rem;
-}
-
-/* #endregion typography */
-/* #region btn */
+/* #region Buttons */
 button.btn-primary {
   position: relative;
   display: inline-block;
@@ -520,7 +365,6 @@ button.btn-primary .circle {
   background: var(--accent);
   border-radius: 1.625rem;
 }
-
 button.btn-primary .circle .icon {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: absolute;
@@ -529,15 +373,12 @@ button.btn-primary .circle .icon {
   margin: auto;
   background: var(--primary);
 }
-
 button.btn-primary .circle .icon.arrow {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   left: 0.625rem;
   width: 1.125rem;
   height: 0.125rem;
   background: none;
 }
-
 button.btn-primary .circle .icon.arrow::before {
   position: absolute;
   content: "";
@@ -549,7 +390,6 @@ button.btn-primary .circle .icon.arrow::before {
   border-right: 0.125rem solid var(--bg);
   transform: rotate(45deg);
 }
-
 button.btn-primary .btn-text {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: absolute;
@@ -560,21 +400,18 @@ button.btn-primary .btn-text {
   padding: 0.75rem 0;
   margin: 0 0 0 1.85rem;
 }
-
 button.btn-primary:hover .circle {
   width: 100%;
 }
-
 button.btn-primary:hover .circle .icon.arrow {
   background: var(--bg);
   transform: translate(1rem, 0);
 }
-
 button.btn-primary:hover .btn-text {
   color: var(--bg);
 }
-/* #endregion btn */
-/* sections */
+/* #endregion */
+
 .hero {
   background: linear-gradient(
       to top,
@@ -586,39 +423,52 @@ button.btn-primary:hover .btn-text {
   background-position: center;
 }
 
-.design-thinking {
-  padding: 4rem 0;
-  background: #f9fafb;
+/* #region Projects */
+.project-image {
+  position: relative;
+  overflow: hidden;
+}
+.project-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(231, 98, 104, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+.project-image:hover::after {
+  opacity: 1;
 }
 
-.design-thinking h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+.project-image .project-click {
+  z-index: 2;
+  color: var(--accent);
+  transition: color 0.25s ease, transform 0.25s ease, filter 0.25s ease;
 }
-
-.three-cols {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.project-image:hover .project-click {
+  color: var(--primary);
+  opacity: 1;
 }
-
-.diagram ul {
-  margin-top: 2rem;
+/* Project card layout */
+#projects .projects-row article {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  list-style: none;
+  flex-direction: column;
 }
-
-.diagram li {
-  padding: 0.5rem 1rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 9999px;
-  background: #fff;
-  font-size: 0.9rem;
+#projects .projects-row article > .flex {
+  margin-top: auto;
 }
+#projects .projects-row article > .flex i {
+  align-self: center;
+}
+/* #endregion Project */
 
+/* #region Design Thinking */
+
+/* #endregion Design Thinking*/
+
+/* #region Call to Action */
 .cta {
   background: linear-gradient(
       to bottom,
@@ -636,57 +486,249 @@ footer {
   font-size: 0.8rem;
   color: var(--gray);
 }
-
 .footer-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+/* #endregion */
 
-/* Project image hover: accent overlay (40%) and project-click icon color change */
-.project-image {
-  position: relative; /* already present in markup, ensure stacking context */
-  overflow: hidden;
-}
-.project-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(231, 98, 104, 0.6); /* --accent (#e76268) at 40% */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1; /* overlay above the img but below the icon */
-  pointer-events: none;
-}
-.project-image:hover::after {
-  opacity: 1;
-}
+/* #region Responsive adjustments */
+/* Mobile */
+@media (max-width: 767px) {
+  .mobile-menu .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .menu-main {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 0;
+    padding-bottom: 4.8rem;
+  }
+  .menu-features {
+    border: none;
+    padding: 0;
+  }
 
-/* project-click icon should sit above the overlay and change color to primary on hover */
-.project-image .project-click {
-  z-index: 2;
-  color: var(--accent);
-  transition: color 0.25s ease, transform 0.25s ease, filter 0.25s ease;
-  /* default color left untouched; if the SVG uses currentColor this will work */
-}
-.project-image:hover .project-click {
-  color: var(--primary);
-  /* fallback for non-currentColor SVGs: slightly reduce opacity so the overlay shows through */
-  opacity: 1;
+  /* ensure each project article keeps a minimum width on small screens so horizontal scroll works */
+  #projects .projects-row article {
+    min-width: 75vw;
+    flex: 0 0 auto;
+  }
 }
 
-/* Align project card footers (icons + buttons) to the same vertical level */
-#projects .projects-row article {
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .mobile-menu .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* keep horizontal scroll on tablet for projects row */
+  #projects .container > .projects-row {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+    padding-top: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  #projects .container > .projects-row::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  /* each article takes 2/3 so part of next card is visible */
+  #projects .projects-row article {
+    flex: 0 0 66.6667%;
+    min-width: 66.6667%;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  #projects .projects-row {
+    gap: 2rem;
+  }
+  #projects .projects-row article {
+    flex: 0 0 calc((100% - 4rem) / 3);
+    max-width: calc((100% - 4rem) / 3);
+  }
+}
+/* #endregion Responsive adjustments */
+
+/* Design Tabs / Carousel styles */
+.design-tabs {
+  display: block;
+}
+.design-tabs .tabs {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-end;
+}
+.design-tabs .tab {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--gray);
+  border-bottom: 1px solid var(--gray);
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  transform: all 0.3s ease;
+}
+.design-tabs .tab:hover {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.design-tabs .tab.active,
+.design-tabs .tab[aria-selected="true"] {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  cursor: default;
+  font-weight: 900;
 }
 
-/* push the icon row and button to the bottom of the card so they align across cards */
-#projects .projects-row article > .flex {
-  margin-top: auto;
+.design-tabs .carousel {
+  overflow: hidden;
+}
+.design-tabs .carousel-track {
+  display: flex;
+  transition: transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 300%; /* 3 panels */
+  height: 100%;
+  transform: translateX(0%);
+  will-change: transform;
+}
+.design-tabs .panel {
+  width: 33.3333%;
+  flex: 0 0 33.3333%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 1em 0;
+}
+.design-tabs .panel-text {
+  max-width: 40rem;
+}
+.design-tabs .panel-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.design-tabs .panel-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  max-width: 100%;
+}
+.design-tabs .panel-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* responsive video in place of svg */
+.design-tabs .panel-media video {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+  border-radius: 2px;
+}
+/* video + fallback layering */
+.design-tabs .panel-media {
+  position: relative;
+}
+.design-tabs .panel-media video {
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+.design-tabs .panel-media .video-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  display: none; /* default: hidden for generic panels, overridden for panel-2 below */
 }
 
-/* ensure the icon group doesn't wrap and stays vertically centered */
-#projects .projects-row article > .flex i {
-  align-self: center;
+/* play overlay shown over fallback image when autoplay is blocked */
+.video-play-overlay {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 0;
+  background: transparent;
+  padding: 0;
+  width: 4.8rem;
+  height: 4.8rem;
+  display: none;
+  cursor: pointer;
+}
+.video-play-overlay:focus {
+  outline: 2px solid var(--accent);
+  border-radius: 50%;
+}
+.video-play-overlay svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .design-tabs .panel {
+    grid-template-columns: 1fr;
+    width: 100%;
+    flex: 0 0 100%;
+  }
+  .design-tabs .tabs {
+    gap: 1rem;
+  }
+}
+#panel-2 .panel-media {
+  width: 100%;
+  /* maintain 16:9 ratio */
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  display: block;
+  background-color: #000;
+  overflow: hidden;
+}
+#panel-2 .panel-media .video-fallback {
+  display: block; /* always visible until user plays */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+#panel-2 .panel-media video {
+  /* overlay the video on top of fallback when playing */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  display: none; /* shown when playback starts */
+  background: transparent;
+}
+#panel-2 .panel-media .video-play-overlay {
+  display: block; /* visible by default so user can start playback */
 }
