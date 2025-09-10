@@ -68,17 +68,24 @@
   }
 
   .h3 {
-    /* base styles using Tailwind utilities where allowed */
-    @apply text-xl leading-tight py-6 border-t border-b;
-    /* border color: use CSS variable rather than a Tailwind color utility */
-    border-color: var(--primary);
+    @apply text-xl leading-tight py-6;
   }
 
   @screen sm {
     .h3 {
-      /* responsive overrides must be placed inside @screen blocks */
       @apply text-2xl py-8;
     }
+  }
+
+  .p-secondary {
+    @apply text-sm sm:text-base leading-normal py-2 sm:py-3 text-secondary;
+  }
+  .p-subtitle {
+    @apply text-lg sm:text-2xl leading-normal text-secondary font-accent;
+  }
+
+  .i-tool {
+    @apply inline-flex rounded-full text-secondary text-xl sm:text-2xl justify-center items-center;
   }
 }
 
