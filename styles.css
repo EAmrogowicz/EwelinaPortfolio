@@ -82,6 +82,9 @@
   .i-tool {
     @apply inline-flex rounded-full text-secondary text-xl sm:text-2xl justify-center items-center;
   }
+  .i-skill {
+    @apply inline-flex rounded-full text-primary text-4xl sm:text-6xl justify-center items-center mb-2 sm:mb-4;
+  }
 }
 
 /* #region Header */
@@ -354,6 +357,9 @@ button.btn-primary {
 .cta button.btn-primary {
   width: 15rem;
 }
+.profile button.btn-primary {
+  width: 15rem;
+}
 
 button.btn-primary .circle {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -423,6 +429,17 @@ button.btn-primary:hover .btn-text {
   background-position: center;
 }
 
+.profile {
+  background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url("../media/smokeBg.webp");
+  background-size: cover;
+  background-position: center;
+}
+
 /* #region Projects */
 .project-image {
   position: relative;
@@ -464,103 +481,7 @@ button.btn-primary:hover .btn-text {
 }
 /* #endregion Project */
 
-/* #region Design Thinking */
-
-/* #endregion Design Thinking*/
-
-/* #region Call to Action */
-.cta {
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0) 60%
-    ),
-    url("../media/smokeBgFooter.webp");
-  background-size: cover;
-  background-position: center;
-}
-
-footer {
-  border-top: 1px solid var(--primary);
-  padding: 1.5rem 0;
-  font-size: 0.8rem;
-  color: var(--gray);
-}
-.footer-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-/* #endregion */
-
-/* #region Responsive adjustments */
-/* Mobile */
-@media (max-width: 767px) {
-  .mobile-menu .menu-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .menu-main {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-right: 0;
-    padding-bottom: 4.8rem;
-  }
-  .menu-features {
-    border: none;
-    padding: 0;
-  }
-
-  /* ensure each project article keeps a minimum width on small screens so horizontal scroll works */
-  #projects .projects-row article {
-    min-width: 75vw;
-    flex: 0 0 auto;
-  }
-}
-
-/* Tablet */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .mobile-menu .menu-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  /* keep horizontal scroll on tablet for projects row */
-  #projects .container > .projects-row {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 0.5rem;
-    padding-top: 1rem;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  #projects .container > .projects-row::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-  }
-
-  /* each article takes 2/3 so part of next card is visible */
-  #projects .projects-row article {
-    flex: 0 0 66.6667%;
-    min-width: 66.6667%;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1025px) {
-  #projects .projects-row {
-    gap: 2rem;
-  }
-  #projects .projects-row article {
-    flex: 0 0 calc((100% - 4rem) / 3);
-    max-width: calc((100% - 4rem) / 3);
-  }
-}
-/* #endregion Responsive adjustments */
-
-/* Design Tabs / Carousel styles */
+/* #region Design Tabs / Carousel styles */
 .design-tabs {
   display: block;
 }
@@ -729,3 +650,96 @@ footer {
 #panel-2 .panel-media .video-play-overlay {
   display: block; /* visible by default so user can start playback */
 }
+/* #endregion Design Tabs / Carousel styles */
+
+/* #region Call to Action */
+.cta {
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 60%
+    ),
+    url("../media/smokeBgFooter.webp");
+  background-size: cover;
+  background-position: center;
+}
+
+footer {
+  border-top: 1px solid var(--primary);
+  padding: 1.5rem 0;
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+.footer-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* #endregion */
+
+/* #region Responsive adjustments */
+/* Mobile */
+@media (max-width: 767px) {
+  .mobile-menu .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .menu-main {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 0;
+    padding-bottom: 4.8rem;
+  }
+  .menu-features {
+    border: none;
+    padding: 0;
+  }
+
+  /* ensure each project article keeps a minimum width on small screens so horizontal scroll works */
+  #projects .projects-row article {
+    min-width: 75vw;
+    flex: 0 0 auto;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .mobile-menu .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* keep horizontal scroll on tablet for projects row */
+  #projects .container > .projects-row {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+    padding-top: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  #projects .container > .projects-row::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  /* each article takes 2/3 so part of next card is visible */
+  #projects .projects-row article {
+    flex: 0 0 66.6667%;
+    min-width: 66.6667%;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  #projects .projects-row {
+    gap: 2rem;
+  }
+  #projects .projects-row article {
+    flex: 0 0 calc((100% - 4rem) / 3);
+    max-width: calc((100% - 4rem) / 3);
+  }
+}
+/* #endregion Responsive adjustments */
