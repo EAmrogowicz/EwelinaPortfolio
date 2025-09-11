@@ -557,57 +557,6 @@ button.btn-primary:hover .btn-text {
   height: auto;
   display: block;
 }
-/* responsive video in place of svg */
-.design-tabs .panel-media video {
-  width: 100%;
-  height: auto;
-  display: block;
-  max-width: 100%;
-  border-radius: 2px;
-}
-/* video + fallback layering */
-.design-tabs .panel-media {
-  position: relative;
-}
-.design-tabs .panel-media video {
-  position: relative;
-  z-index: 2;
-  display: block;
-}
-.design-tabs .panel-media .video-fallback {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  display: none; /* default: hidden for generic panels, overridden for panel-2 below */
-}
-
-/* play overlay shown over fallback image when autoplay is blocked */
-.video-play-overlay {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border: 0;
-  background: transparent;
-  padding: 0;
-  width: 4.8rem;
-  height: 4.8rem;
-  display: none;
-  cursor: pointer;
-}
-.video-play-overlay:focus {
-  outline: 2px solid var(--accent);
-  border-radius: 50%;
-}
-.video-play-overlay svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
 
 @media (max-width: 767px) {
   .design-tabs .panel {
@@ -627,28 +576,12 @@ button.btn-primary:hover .btn-text {
   background-color: #000;
   overflow: hidden;
 }
-#panel-2 .panel-media .video-fallback {
-  display: block; /* always visible until user plays */
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  z-index: 1;
-}
-#panel-2 .panel-media video {
-  /* overlay the video on top of fallback when playing */
-  position: absolute;
-  inset: 0;
+/* ensure .video-fallback image fills the panel-media cleanly */
+.video-fallback {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 2;
-  display: none; /* shown when playback starts */
-  background: transparent;
-}
-#panel-2 .panel-media .video-play-overlay {
-  display: block; /* visible by default so user can start playback */
+  display: block;
 }
 /* #endregion Design Tabs / Carousel styles */
 
