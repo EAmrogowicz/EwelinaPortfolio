@@ -83,7 +83,7 @@
     @apply inline-flex rounded-full text-secondary text-xl sm:text-2xl justify-center items-center;
   }
   .i-skill {
-    @apply inline-flex rounded-full text-primary text-4xl sm:text-6xl justify-center items-center mb-2 sm:mb-4;
+    @apply inline-flex rounded-full text-primary text-5xl justify-center items-center mb-2 sm:mb-4;
   }
 }
 
