@@ -58,17 +58,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
   }
 
-  // ---------- Design thinking tab/carousel behavior ----------
-  const tabs = document.querySelectorAll(".design-tabs .tab");
-  const track = document.querySelector(".design-tabs .carousel-track");
-  const panels = document.querySelectorAll(".design-tabs .panel");
-  let current = 0;
-  let isAnimating = false;
+  // ---------- Design thinking tab/carousel behavior (original horizontal) ----------
+  (function initDesignTabs() {
+    const dTabs = document.querySelectorAll(".design-tabs .tab");
+    const dTrack = document.querySelector(".design-tabs .carousel-track");
+    const dPanels = document.querySelectorAll(".design-tabs .panel");
+    if (!dTabs.length || !dPanels.length || !dTrack) return;
 
-  if (tabs.length && panels.length && track) {
-    // initialize panels and track
-    panels.forEach((panel, i) => {
-      if (i === current) {
+    let dCurrent = 0;
+    let dAnimating = false;
+
+    // initialize panels
+    dPanels.forEach((panel, i) => {
+      if (i === dCurrent) {
         panel.setAttribute("aria-hidden", "false");
         panel.tabIndex = 0;
       } else {
@@ -77,78 +79,186 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    const setTrackPosition = (idx) => {
-      const panelPercent = 100 / panels.length;
-      track.style.transform = `translateX(-${idx * panelPercent}%)`;
+    const setDesignTrackPosition = (idx) => {
+      const panelPercent = 100 / dPanels.length;
+      dTrack.style.transform = `translateX(-${idx * panelPercent}%)`;
     };
 
-    // place track initial position
-    setTrackPosition(current);
+    // initial
+    setDesignTrackPosition(dCurrent);
 
-    // updateTabs updates visual state and moves the carousel
-    function updateTabs(idx) {
-      if (isAnimating || idx === current || idx < 0 || idx >= tabs.length)
+    function updateDesignTabs(idx) {
+      if (dAnimating || idx === dCurrent || idx < 0 || idx >= dTabs.length)
         return;
-      isAnimating = true;
+      dAnimating = true;
 
-      // update tab attributes and classes
-      tabs.forEach((t, i) => {
+      dTabs.forEach((t, i) => {
         const isActive = i === idx;
         t.classList.toggle("active", isActive);
         t.setAttribute("aria-selected", isActive ? "true" : "false");
         t.tabIndex = isActive ? 0 : -1;
       });
 
-      // update panels
-      panels.forEach((panel, i) => {
+      dPanels.forEach((panel, i) => {
         const visible = i === idx;
         panel.setAttribute("aria-hidden", visible ? "false" : "true");
         panel.tabIndex = visible ? 0 : -1;
       });
 
-      // move track
-      setTrackPosition(idx);
-      current = idx;
+      setDesignTrackPosition(idx);
+      dCurrent = idx;
 
-      // clear animating flag after transition
       const onEnd = () => {
-        isAnimating = false;
-        track.removeEventListener("transitionend", onEnd);
+        dAnimating = false;
+        dTrack.removeEventListener("transitionend", onEnd);
       };
-      track.addEventListener("transitionend", onEnd);
+      dTrack.addEventListener("transitionend", onEnd);
     }
 
-    // attach events
-    tabs.forEach((tab) => {
+    dTabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         const idx = Number(tab.getAttribute("data-index"));
-        updateTabs(idx);
+        updateDesignTabs(idx);
       });
-
       tab.addEventListener("keydown", (e) => {
         if (e.key === "ArrowRight") {
           e.preventDefault();
-          const next = (current + 1) % tabs.length;
-          updateTabs(next);
+          const next = (dCurrent + 1) % dTabs.length;
+          updateDesignTabs(next);
         } else if (e.key === "ArrowLeft") {
           e.preventDefault();
-          const prev = (current - 1 + tabs.length) % tabs.length;
-          updateTabs(prev);
+          const prev = (dCurrent - 1 + dTabs.length) % dTabs.length;
+          updateDesignTabs(prev);
         }
       });
     });
 
-    // Make carousel responsive on resize to keep panels equal width
+    // responsive: keep percentage-based translate correct
     window.addEventListener("resize", () => {
-      // ensure transform remains correct
-      track.style.transition = "none";
-      setTrackPosition(current);
+      dTrack.style.transition = "none";
+      setDesignTrackPosition(dCurrent);
       // force reflow then restore transition
       // eslint-disable-next-line no-unused-expressions
-      track.offsetHeight;
-      track.style.transition = "";
+      dTrack.offsetHeight;
+      dTrack.style.transition = "";
     });
-  }
+  })();
+
+  // ---------- Project tabs (vertical, independent) ----------
+  (function initProjectTabs() {
+    const pTabs = document.querySelectorAll(".project-tabs .tab");
+    const pTrack = document.querySelector(".project-tabs .carousel-track");
+    const pPanels = document.querySelectorAll(".project-tabs .panel");
+    if (!pTabs.length || !pPanels.length || !pTrack) return;
+
+    let pCurrent = 0;
+    let pAnimating = false;
+
+    // initialize: ensure all panels are stacked (visible) so we can translate the track
+    pPanels.forEach((panel) => {
+      panel.style.display = "grid";
+    });
+
+    // compute offsets and total height for stacked panels
+    let offsets = [];
+    const recalcOffsets = () => {
+      offsets = [];
+      let total = 0;
+      pPanels.forEach((p) => {
+        const h = p.offsetHeight || p.getBoundingClientRect().height;
+        offsets.push(total);
+        total += h;
+      });
+      pTrack.style.height = `${total}px`;
+    };
+
+    const setProjectTrack = (idx) => {
+      if (!pTrack) return;
+      const offset = offsets[idx] || 0;
+      pTrack.style.transform = `translateY(-${offset}px)`;
+    };
+
+    // initial
+    const initProject = () => {
+      recalcOffsets();
+      // mark active panel visually
+      pPanels.forEach((panel, i) => {
+        panel.classList.toggle("is-active", i === pCurrent);
+        panel.style.pointerEvents = i === pCurrent ? "auto" : "none";
+      });
+      setProjectTrack(pCurrent);
+    };
+    initProject();
+
+    // ensure offsets are recalculated when images load
+    window.addEventListener("load", () => {
+      initProject();
+    });
+    pPanels.forEach((panel) => {
+      const imgs = panel.querySelectorAll("img");
+      imgs.forEach((img) => {
+        img.addEventListener("load", () => {
+          initProject();
+        });
+      });
+    });
+
+    function updateProjectTabs(idx) {
+      if (pAnimating || idx === pCurrent || idx < 0 || idx >= pTabs.length)
+        return;
+      pAnimating = true;
+
+      pTabs.forEach((t, i) => {
+        const isActive = i === idx;
+        t.classList.toggle("active", isActive);
+        t.setAttribute("aria-selected", isActive ? "true" : "false");
+        t.tabIndex = isActive ? 0 : -1;
+      });
+
+      // update aria states and visual classes
+      pPanels.forEach((panel, i) => {
+        const visible = i === idx;
+        panel.setAttribute("aria-hidden", visible ? "false" : "true");
+        panel.tabIndex = visible ? 0 : -1;
+        panel.classList.toggle("is-active", visible);
+        panel.style.pointerEvents = visible ? "auto" : "none";
+      });
+
+      setProjectTrack(idx);
+      pCurrent = idx;
+
+      // clear animating after CSS transition duration
+      setTimeout(() => {
+        pAnimating = false;
+      }, 650);
+    }
+
+    pTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const idx = Number(tab.getAttribute("data-index"));
+        updateProjectTabs(idx);
+      });
+      tab.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          const next = (pCurrent + 1) % pTabs.length;
+          updateProjectTabs(next);
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          const prev = (pCurrent - 1 + pTabs.length) % pTabs.length;
+          updateProjectTabs(prev);
+        }
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      pTrack.style.transition = "none";
+      setProjectTrack(pCurrent);
+      // eslint-disable-next-line no-unused-expressions
+      pTrack.offsetHeight;
+      pTrack.style.transition = "";
+    });
+  })();
 
   // ---------- CTA mailto (progressive enhancement) ----------
   try {
@@ -161,5 +271,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   } catch (err) {
     // fail silently; progressive enhancement
+  }
+
+  // ---------- Project GEH: navigate to project-geh.html ----------
+  try {
+    const gehBtn = document.getElementById("btn-geh");
+    if (gehBtn) {
+      gehBtn.addEventListener("click", (e) => {
+        // Use same-origin navigation to the project page
+        window.location.href = "project-geh.html";
+      });
+    }
+  } catch (err) {
+    // silent fail; non-critical
+  }
+
+  // ---------- Project GEH: open live site from hero button ----------
+  try {
+    const liveBtn = document.querySelector(".hero-geh .btn-primary");
+    if (liveBtn) {
+      liveBtn.setAttribute("type", "button");
+      liveBtn.addEventListener("click", (e) => {
+        window.open("https://www.globaleducationhub.com", "_blank", "noopener");
+      });
+    }
+  } catch (err) {
+    // silent fail; non-critical
   }
 });

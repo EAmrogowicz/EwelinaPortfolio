@@ -558,6 +558,100 @@ button.btn-primary:hover .btn-text {
   display: block;
 }
 
+/* Layout for project tabs: vertical tabs + vertical carousel movement
+   Applied to .project-tabs so markup remains simple and consistent */
+.project-tabs {
+  display: block;
+}
+
+@media (min-width: 900px) {
+  .project-tabs {
+    display: grid;
+    grid-template-columns: 220px 1fr; /* left column for tabs, right for carousel */
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  /* Tabs become a left rail */
+  .project-tabs .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    padding-right: 1.25rem;
+    text-align: left;
+  }
+
+  /* Tab visual tweaks (left rail) */
+  .project-tabs .tab {
+    flex: none;
+    padding: 0.25rem 0;
+    border-bottom: none;
+    color: var(--gray);
+    text-align: left;
+  }
+
+  .project-tabs .tab.active,
+  .project-tabs .tab[aria-selected="true"] {
+    color: var(--primary);
+    border-bottom: none;
+    font-weight: 900;
+  }
+
+  /* Carousel area: allow vertical movement and full-width panels */
+  .project-tabs .carousel {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .project-tabs .carousel-track {
+    display: block;
+    -webkit-transition: -webkit-transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    -webkit-transition: -webkit-transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      height 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      height 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
+  }
+
+  /* Panels stack vertically and take full width of right column */
+  .project-tabs .panel {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding: 1rem 0;
+  }
+
+  /* panel transition: fade + slight upward motion when activated */
+  .project-tabs .panel {
+    opacity: 0;
+    transform: translateY(8px);
+    -webkit-transition: opacity 380ms ease, transform 380ms ease;
+    transition: opacity 380ms ease, transform 380ms ease;
+  }
+
+  .project-tabs .panel.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Text alignment and spacing */
+  .project-tabs .panel-text {
+    max-width: 40rem;
+    text-align: left;
+  }
+
+  /* Make media area contained and consistent */
+  .project-tabs .panel-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 @media (max-width: 767px) {
   .design-tabs .panel {
     grid-template-columns: 1fr;
