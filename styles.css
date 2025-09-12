@@ -622,6 +622,10 @@ button.btn-primary:hover .btn-text {
   /* make carousel occupy the full available height of the parent */
   height: 100%;
   min-height: 0;
+  /* fallback visible area when parent height isn't explicitly set by layout.
+    This prevents zero-height carousel when JS sizes panels by percentage
+    (useful when there are many panels, e.g. 7). */
+  min-height: 48rem; /* ~768px on root font-size 16px */
 }
 .project-tabs .carousel-track {
   display: flex;
@@ -637,19 +641,18 @@ button.btn-primary:hover .btn-text {
 }
 .project-tabs .panel {
   width: 100%;
-  flex: 0 0 33.3333%;
+  /* allow JS to set the panel heights dynamically for any number of panels (e.g. 7) */
+  flex: 0 0 auto;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 2rem;
+  gap: 2.4rem;
   /* panels should stretch to fill the carousel height and centre their content */
   align-items: center;
   padding: 1rem 0;
-  height: 100%;
   min-height: 0;
   opacity: 1;
 }
 .project-tabs .panel-text {
-  max-width: 40rem;
   text-align: left;
 }
 .project-tabs .panel-media {
@@ -658,7 +661,7 @@ button.btn-primary:hover .btn-text {
   align-items: center;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .design-tabs .panel {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -666,15 +669,21 @@ button.btn-primary:hover .btn-text {
   .design-tabs .tabs {
     gap: 1rem;
   }
-}
-
-#panel-2 .panel-media {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  max-width: 100%;
-  display: block;
-  background-color: #000;
-  overflow: hidden;
+  .project-tabs {
+    grid-template-columns: 96px 1fr;
+    gap: 2.4rem;
+    padding-bottom: 2.4rem;
+  }
+  .project-tabs .tab {
+    /* font-size: 1rem !important; */
+    padding-right: 0.5rem;
+  }
+  .project-tabs .panel {
+    display: flex !important;
+    flex-direction: column-reverse;
+    gap: 1rem;
+    justify-content: center;
+  }
 }
 
 /* -----------------------------
