@@ -567,35 +567,40 @@ button.btn-primary:hover .btn-text {
 @media (min-width: 900px) {
   .project-tabs {
     display: grid;
-    grid-template-columns: 220px 1fr; /* left column for tabs, right for carousel */
-    gap: 2.5rem;
-    align-items: start;
+    grid-template-columns: 200px 1fr;
+    gap: 4.8rem;
+    align-items: center;
   }
 
   /* Tabs become a left rail */
   .project-tabs .tabs {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    align-items: flex-start;
-    border-right: 1px solid rgba(0, 0, 0, 0.05);
-    padding-right: 1.25rem;
-    text-align: left;
+    gap: 1.6rem;
+    border-right: 1px solid var(--gray);
+    text-align: right;
   }
 
   /* Tab visual tweaks (left rail) */
   .project-tabs .tab {
-    flex: none;
-    padding: 0.25rem 0;
-    border-bottom: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0;
+    padding-right: 1.6rem;
+    cursor: pointer;
     color: var(--gray);
-    text-align: left;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    transform: all 0.3s ease;
   }
 
   .project-tabs .tab.active,
   .project-tabs .tab[aria-selected="true"] {
     color: var(--primary);
-    border-bottom: none;
+    border-right: 4px solid var(--primary);
     font-weight: 900;
   }
 
@@ -603,40 +608,47 @@ button.btn-primary:hover .btn-text {
   .project-tabs .carousel {
     overflow: hidden;
     position: relative;
+    /* Fill the parent container (for example: #overview sets the section height) */
+    height: 100%;
+    max-height: 100%;
   }
-
   .project-tabs .carousel-track {
+    /* Stack panels vertically: track is 300% of carousel (3 panels)
+       JS can translateY by 0%, -33.3333%, -66.6667% to show each panel */
     display: block;
+    position: relative;
     -webkit-transition: -webkit-transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
     -webkit-transition: -webkit-transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
       height 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
     transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
       height 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
     will-change: transform;
+    height: 300%; /* 3 panels stacked vertically */
   }
 
-  /* Panels stack vertically and take full width of right column */
+  /* Panels are stacked on top of each other and the active one is centered
+     vertically in the carousel viewport. This preserves the panel grid layout
+     but uses absolute positioning so centering is reliable. */
+  /* Panels flow normally stacked inside the track so the track's translateY
+     can slide them. Each panel is 33.3333% of the track (i.e. full carousel height). */
   .project-tabs .panel {
+    position: relative;
     width: 100%;
+    height: 33.3333%; /* 1/3 of the track => equals 100% of carousel */
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: 2rem;
-    align-items: start;
+    align-items: center; /* center content vertically */
     padding: 1rem 0;
-  }
-
-  /* panel transition: fade + slight upward motion when activated */
-  .project-tabs .panel {
-    opacity: 0;
-    transform: translateY(8px);
-    -webkit-transition: opacity 380ms ease, transform 380ms ease;
-    transition: opacity 380ms ease, transform 380ms ease;
-  }
-
-  .project-tabs .panel.is-active {
     opacity: 1;
-    transform: translateY(0);
+    pointer-events: auto;
+    -webkit-transition: none;
+    transition: none;
+    max-height: none;
+    overflow: hidden;
   }
+
+  /* active panel is positioned by translating the .carousel-track */
 
   /* Text alignment and spacing */
   .project-tabs .panel-text {
@@ -669,13 +681,6 @@ button.btn-primary:hover .btn-text {
   display: block;
   background-color: #000;
   overflow: hidden;
-}
-/* ensure .video-fallback image fills the panel-media cleanly */
-.video-fallback {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 /* #endregion Design Tabs / Carousel styles */
 

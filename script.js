@@ -159,28 +159,23 @@ document.addEventListener("DOMContentLoaded", () => {
       panel.style.display = "grid";
     });
 
-    // compute offsets and total height for stacked panels
-    let offsets = [];
-    const recalcOffsets = () => {
-      offsets = [];
-      let total = 0;
-      pPanels.forEach((p) => {
-        const h = p.offsetHeight || p.getBoundingClientRect().height;
-        offsets.push(total);
-        total += h;
-      });
-      pTrack.style.height = `${total}px`;
-    };
+    // Use percentage-based sliding so CSS-defined track/panel heights work reliably
+    const panelCount = pPanels.length;
+    const panelPercent = 100 / panelCount;
 
     const setProjectTrack = (idx) => {
       if (!pTrack) return;
-      const offset = offsets[idx] || 0;
-      pTrack.style.transform = `translateY(-${offset}px)`;
+      pTrack.style.transform = `translateY(-${idx * panelPercent}%)`;
     };
 
     // initial
     const initProject = () => {
-      recalcOffsets();
+      // make track and panels sized by percentage so they fill the carousel
+      if (pTrack) pTrack.style.height = `${panelCount * 100}%`;
+      pPanels.forEach((panel) => {
+        panel.style.height = `${panelPercent}%`;
+      });
+
       // mark active panel visually
       pPanels.forEach((panel, i) => {
         panel.classList.toggle("is-active", i === pCurrent);
@@ -190,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     initProject();
 
-    // ensure offsets are recalculated when images load
+    // re-init on load and when images inside panels load (to ensure sizes)
     window.addEventListener("load", () => {
       initProject();
     });
