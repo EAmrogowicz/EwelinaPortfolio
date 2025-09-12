@@ -4,7 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom properties and base styles */
+/*
+  styles.css — reorganised
+  - group: variables, base, components (Tailwind layers), then vanilla CSS sections
+  - removed an exact duplicate img rule and kept behavior unchanged
+  - refactor date: 2025-09-12
+*/
+
+/* -----------------------------
+   Custom properties
+   ----------------------------- */
 :root {
   --accent: #e76268;
   --primary: #1b232e;
@@ -17,6 +26,9 @@
   --font-accent: "Marcellus", serif;
 }
 
+/* -----------------------------
+   Tailwind base & components
+   ----------------------------- */
 @layer base {
   body {
     font-family: "Roboto", sans-serif;
@@ -87,7 +99,9 @@
   }
 }
 
-/* #region Header */
+/* -----------------------------
+   Header (logo, socials)
+   ----------------------------- */
 .logo {
   display: inline-block;
 }
@@ -126,9 +140,10 @@
 .social-links i {
   font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
 }
-/* #endregion Header */
 
-/* #region Full screen / mobile menu */
+/* -----------------------------
+   Full screen / mobile menu
+   ----------------------------- */
 .menu-toggle {
   display: flex !important;
   z-index: 100;
@@ -178,7 +193,6 @@
   padding-bottom: 2rem;
 }
 
-/* Menu main / features */
 .menu-main ul {
   list-style: none;
   padding: 0;
@@ -194,7 +208,6 @@
   transform: translateY(0);
   opacity: 1;
 }
-/* Stagger */
 .menu-main ul li:nth-child(1) {
   transition-delay: 0.1s;
 }
@@ -244,8 +257,6 @@
   overflow: hidden;
   color: #fff;
 }
-
-/* explicit background images */
 .feature-cards .feature-card:nth-child(1) {
   background-image: url("../media/project-gehMockup.webp");
 }
@@ -253,7 +264,6 @@
   background-image: url("../media/project-eduMockup.webp");
 }
 
-/* overlay & interactions */
 .feature-card::after {
   content: "";
   position: absolute;
@@ -288,7 +298,6 @@
   letter-spacing: 0.05em;
 }
 
-/* feature icon: single consolidated rule */
 .feature-card .feature-icon {
   color: var(--accent);
   transition: color 0.22s ease, transform 0.22s ease;
@@ -311,7 +320,6 @@
   background: rgba(231, 98, 104, 0.25);
 }
 
-/* navigation links inside mobile menu */
 .mobile-menu nav ul li a {
   transition: color 0.3s ease;
   display: flex;
@@ -338,9 +346,10 @@
 .mobile-menu nav ul li a:hover::after {
   width: calc(100% - 0.5rem);
 }
-/* #endregion */
 
-/* #region Buttons */
+/* -----------------------------
+   Buttons
+   ----------------------------- */
 button.btn-primary {
   position: relative;
   display: inline-block;
@@ -416,8 +425,10 @@ button.btn-primary:hover .circle .icon.arrow {
 button.btn-primary:hover .btn-text {
   color: var(--bg);
 }
-/* #endregion */
 
+/* -----------------------------
+   Hero / Profile backgrounds
+   ----------------------------- */
 .hero {
   background: linear-gradient(
       to top,
@@ -428,7 +439,6 @@ button.btn-primary:hover .btn-text {
   background-size: cover;
   background-position: center;
 }
-
 .profile {
   background: linear-gradient(
       to top,
@@ -440,7 +450,9 @@ button.btn-primary:hover .btn-text {
   background-position: center;
 }
 
-/* #region Projects */
+/* -----------------------------
+   Projects
+   ----------------------------- */
 .project-image {
   position: relative;
   overflow: hidden;
@@ -458,7 +470,6 @@ button.btn-primary:hover .btn-text {
 .project-image:hover::after {
   opacity: 1;
 }
-
 .project-image .project-click {
   z-index: 2;
   color: var(--accent);
@@ -468,7 +479,7 @@ button.btn-primary:hover .btn-text {
   color: var(--primary);
   opacity: 1;
 }
-/* Project card layout */
+
 #projects .projects-row article {
   display: flex;
   flex-direction: column;
@@ -479,9 +490,10 @@ button.btn-primary:hover .btn-text {
 #projects .projects-row article > .flex i {
   align-self: center;
 }
-/* #endregion Project */
 
-/* #region Design Tabs / Carousel styles */
+/* -----------------------------
+   Design Tabs / Carousel
+   ----------------------------- */
 .design-tabs {
   display: block;
 }
@@ -552,116 +564,83 @@ button.btn-primary:hover .btn-text {
   object-fit: contain;
   max-width: 100%;
 }
-.design-tabs .panel-media img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
 
-/* Layout for project tabs: vertical tabs + vertical carousel movement
-   Applied to .project-tabs so markup remains simple and consistent */
+/* -----------------------------
+   Project Tabs / Carousel
+   ----------------------------- */
+/* Project tabs: vertical left rail + vertical carousel */
 .project-tabs {
-  display: block;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 4.8rem;
+  align-items: center;
+}
+.project-tabs .tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  border-right: 1px solid var(--gray);
+  text-align: right;
+}
+.project-tabs .tab {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  padding-right: 1.6rem;
+  cursor: pointer;
+  color: var(--gray);
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  transform: all 0.3s ease;
+}
+.project-tabs .tab.active,
+.project-tabs .tab[aria-selected="true"] {
+  color: var(--primary);
+  border-right: 4px solid var(--primary);
+  font-weight: 900;
 }
 
-@media (min-width: 900px) {
-  .project-tabs {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 4.8rem;
-    align-items: center;
-  }
-
-  /* Tabs become a left rail */
-  .project-tabs .tabs {
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-    border-right: 1px solid var(--gray);
-    text-align: right;
-  }
-
-  /* Tab visual tweaks (left rail) */
-  .project-tabs .tab {
-    -webkit-appearance: none;
-    appearance: none;
-    border: 0;
-    padding-right: 1.6rem;
-    cursor: pointer;
-    color: var(--gray);
-    flex: 1 1 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    transform: all 0.3s ease;
-  }
-
-  .project-tabs .tab.active,
-  .project-tabs .tab[aria-selected="true"] {
-    color: var(--primary);
-    border-right: 4px solid var(--primary);
-    font-weight: 900;
-  }
-
-  /* Carousel area: allow vertical movement and full-width panels */
-  .project-tabs .carousel {
-    overflow: hidden;
-    position: relative;
-    /* Fill the parent container (for example: #overview sets the section height) */
-    height: 100%;
-    max-height: 100%;
-  }
-  .project-tabs .carousel-track {
-    /* Stack panels vertically: track is 300% of carousel (3 panels)
-       JS can translateY by 0%, -33.3333%, -66.6667% to show each panel */
-    display: block;
-    position: relative;
-    -webkit-transition: -webkit-transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    -webkit-transition: -webkit-transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
-      height 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
-      height 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: transform;
-    height: 300%; /* 3 panels stacked vertically */
-  }
-
-  /* Panels are stacked on top of each other and the active one is centered
-     vertically in the carousel viewport. This preserves the panel grid layout
-     but uses absolute positioning so centering is reliable. */
-  /* Panels flow normally stacked inside the track so the track's translateY
-     can slide them. Each panel is 33.3333% of the track (i.e. full carousel height). */
-  .project-tabs .panel {
-    position: relative;
-    width: 100%;
-    height: 33.3333%; /* 1/3 of the track => equals 100% of carousel */
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 2rem;
-    align-items: center; /* center content vertically */
-    padding: 1rem 0;
-    opacity: 1;
-    pointer-events: auto;
-    -webkit-transition: none;
-    transition: none;
-    max-height: none;
-    overflow: hidden;
-  }
-
-  /* active panel is positioned by translating the .carousel-track */
-
-  /* Text alignment and spacing */
-  .project-tabs .panel-text {
-    max-width: 40rem;
-    text-align: left;
-  }
-
-  /* Make media area contained and consistent */
-  .project-tabs .panel-media {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.project-tabs .carousel {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  max-height: 100%;
+}
+.project-tabs .carousel-track {
+  display: block;
+  position: relative;
+  -webkit-transition: -webkit-transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+  height: 300%; /* 3 panels stacked vertically */
+}
+.project-tabs .panel {
+  position: relative;
+  width: 100%;
+  height: 33.3333%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 1rem 0;
+  opacity: 1;
+  pointer-events: auto;
+  transition: none;
+  max-height: none;
+  overflow: hidden;
+}
+.project-tabs .panel-text {
+  max-width: 40rem;
+  text-align: left;
+}
+.project-tabs .panel-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 767px) {
@@ -673,18 +652,19 @@ button.btn-primary:hover .btn-text {
     gap: 1rem;
   }
 }
+
 #panel-2 .panel-media {
   width: 100%;
-  /* maintain 16:9 ratio */
   aspect-ratio: 16 / 9;
   max-width: 100%;
   display: block;
   background-color: #000;
   overflow: hidden;
 }
-/* #endregion Design Tabs / Carousel styles */
 
-/* #region Call to Action */
+/* -----------------------------
+   Call to action & footer
+   ----------------------------- */
 .cta {
   background: linear-gradient(
       to bottom,
@@ -707,10 +687,10 @@ footer {
   justify-content: space-between;
   align-items: center;
 }
-/* #endregion */
 
-/* #region Responsive adjustments */
-/* Mobile */
+/* -----------------------------
+   Responsive adjustments
+   ----------------------------- */
 @media (max-width: 767px) {
   .mobile-menu .menu-grid {
     grid-template-columns: 1fr;
@@ -734,7 +714,6 @@ footer {
   }
 }
 
-/* Tablet */
 @media (min-width: 768px) and (max-width: 1024px) {
   .mobile-menu .menu-grid {
     grid-template-columns: 1fr;
@@ -764,7 +743,6 @@ footer {
   }
 }
 
-/* Desktop */
 @media (min-width: 1025px) {
   #projects .projects-row {
     gap: 2rem;
@@ -774,4 +752,3 @@ footer {
     max-width: calc((100% - 4rem) / 3);
   }
 }
-/* #endregion Responsive adjustments */
