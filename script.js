@@ -293,4 +293,58 @@ document.addEventListener("DOMContentLoaded", () => {
   } catch (err) {
     // silent fail; non-critical
   }
+
+  // ---------- Tool icon labels: show on hover (CSS) and on tap/click for mobile ----------
+  (function tooltipsForITools() {
+    const tools = document.querySelectorAll(".i-tool[data-label]");
+    if (!tools || !tools.length) return;
+
+    let activeTool = null;
+    const clearActive = () => {
+      if (activeTool) {
+        activeTool.classList.remove("is-active");
+        activeTool = null;
+      }
+    };
+
+    // Click/tap toggles tooltip
+    tools.forEach((tool) => {
+      tool.addEventListener("click", (e) => {
+        // prevent this being treated as a focus-trigger only
+        e.stopPropagation();
+        // toggle
+        if (tool === activeTool) {
+          clearActive();
+        } else {
+          clearActive();
+          tool.classList.add("is-active");
+          activeTool = tool;
+          // auto-hide after 2.5s
+          setTimeout(() => {
+            if (tool === activeTool) clearActive();
+          }, 2500);
+        }
+      });
+
+      // keyboard support: Enter or Space
+      tool.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          tool.click();
+        }
+      });
+    });
+
+    // clicking anywhere else should dismiss
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest || !e.target.closest(".i-tool")) {
+        clearActive();
+      }
+    });
+
+    // also clear on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") clearActive();
+    });
+  })();
 });
