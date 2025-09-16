@@ -88,7 +88,7 @@
     @apply text-sm sm:text-base leading-normal py-2 sm:py-3;
   }
   .p-subtitle {
-    @apply text-lg sm:text-2xl leading-normal text-secondary font-accent;
+    @apply text-lg sm:text-2xl leading-normal text-muted font-accent;
   }
 
   .i-tool {
@@ -438,6 +438,7 @@ button.btn-primary:hover .btn-text {
     url("../media/smokeBg.webp");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 .profile {
   background: linear-gradient(
@@ -448,6 +449,7 @@ button.btn-primary:hover .btn-text {
     url("../media/smokeBg.webp");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* -----------------------------

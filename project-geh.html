@@ -136,25 +136,39 @@
         class="hero-geh relative h-[calc(100dvh-70px)] flex items-end sm:items-center justify-start text-left overflow-hidden pb-16 sm:pb-0"
       >
         <div class="container">
-          <p class="p-subtitle">Insight into Project</p>
-          <h1 class="h1 my-4">Brand&rsquo;s Interface</h1>
-          <p class="p-body w-full sm:w-1/2 mb-16">
-            Global Education Hub is an education‑first directory that organises
-            resources into an interface. The platform groups curated links into
-            broad categories, so users can explore relevant services and follow
-            through to external resources. Built in a focused 6‑week design and
-            development sprint, the responsive layout emphasises clear
-            signposting and simple navigation across devices.
-          </p>
-          <button class="btn-primary">
-            <span class="circle" aria-hidden="true">
-              <span class="icon arrow"></span>
-            </span>
-            <span
-              class="btn-text font-accent tracking-wide text-base sm:text-lg text-accent font-bold leading-[1.6] text-center uppercase"
-              >View Live</span
-            >
-          </button>
+          <div
+            class="hero-inner flex flex-col lg:flex-row items-start lg:items-center gap-0 md:gap-16"
+          >
+            <div class="w-full lg:w-1/4">
+              <p class="p-subtitle">Insight into Project</p>
+              <h1 class="h1 mb-4 mt-0">Brand&rsquo;s Interface</h1>
+              <p class="p-body mb-12">
+                Global Education Hub is an education-first directory that
+                organises resources into easy-to-browse categories. The goal was
+                simple: make it faster for users to find useful services and
+                follow through to the right places. We built the site in a
+                focused 6-week design and development sprint with clear
+                signposting and simple navigation across devices.
+              </p>
+              <button class="btn-primary">
+                <span class="circle" aria-hidden="true">
+                  <span class="icon arrow"></span>
+                </span>
+                <span
+                  class="btn-text font-accent tracking-wide text-base sm:text-lg text-accent font-bold leading-[1.6] text-center uppercase"
+                  >View Live</span
+                >
+              </button>
+            </div>
+
+            <div class="w-full lg:w-3/4 flex-shrink-0">
+              <img
+                src="media/project-gehHero.webp"
+                alt="Global Education Hub project hero"
+                class="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -252,17 +266,16 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      Overview: this project delivers a clear discovery flow so
-                      users can find educational resources with minimal effort.
-                      The content hierarchy (hero → category cards → result
-                      cards) supports quick scanning and predictable navigation.
+                      This project creates a clear discovery flow so users can
+                      find educational resources with minimal effort. The
+                      content hierarchy (hero → category cards → result cards)
+                      helps people scan quickly and find what they need.
                     </p>
                     <p class="p-body">
-                      Practical UI choices included a repeatable card pattern
-                      (title, short description, action), a readable type scale,
-                      and touch‑friendly CTAs. Animations are intentionally
-                      conservative—used to aid comprehension rather than
-                      distract—so initial paint and accessibility are preserved.
+                      We used a repeatable card pattern (title, short
+                      description, action), a clear type scale, and touch-ready
+                      CTAs. Animations are kept subtle to help understanding
+                      without slowing the page or getting in the way.
                     </p>
                   </div>
                   <div class="panel-media">
@@ -281,8 +294,8 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      Define: requirements were turned into practical rules:
-                      three responsive breakpoints, a limited set of top‑level
+                      Requirements were turned into practical rules: three
+                      responsive breakpoints, a limited set of top‑level
                       categories to prevent overload, and a consistent naming
                       convention to make future edits predictable.
                     </p>
@@ -308,16 +321,21 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      Sketch: wireframes emphasised clarity and reusability.
-                      Each card contains a prominent title, a one‑line
-                      description under the title for context, and an obvious
-                      action. External links are explicitly marked.
+                      Wireframes emphasised clarity and reusability. Each card
+                      contains a prominent title, a one‑line description under
+                      the title for context, and an obvious action.
                     </p>
                     <p class="p-body">
-                      Concrete rules: 48px minimum touch targets, 4px spacing
-                      increments, a compact type scale, and a "show more"
-                      pattern for long lists. Skeleton loaders help on slow
-                      networks so content appears progressively.
+                      The layout is intentionally simple: on desktop we
+                      primarily use an 8×7 column‑by‑row grid so cards and
+                      imagery align consistently. On mobile the system shifts to
+                      a 4×14 arrangement and columns are halved at smaller
+                      breakpoints so elements stack predictably. A few slides
+                      use custom grid spacing for emphasis, but the same
+                      principle applies — an even number of columns that divides
+                      cleanly for smaller screens. Skeleton loaders still
+                      initialise content on slow networks so pages load
+                      progressively and maintain perceived performance.
                     </p>
                   </div>
                   <div class="panel-media">
@@ -337,10 +355,10 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      Prototype: the Paneflow prototype made interaction timing,
-                      focus order and stacking behaviour testable before
-                      development. Stakeholders could experience the exact
-                      animations and approve content order quickly.
+                      The Paneflow prototype made interaction timing, focus
+                      order and stacking behaviour testable before development.
+                      Stakeholders could experience the exact animations and
+                      approve content order quickly.
                     </p>
                     <p class="p-body">
                       Paneflow features used: timeline easing, per‑pane triggers
@@ -365,22 +383,19 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      Code: the Paneflow export was embedded via an Elementor
-                      HTML widget; shared JS/CSS were added with Elementor
-                      custom code so assets can be cached and managed centrally.
+                      The Paneflow export was embedded via an Elementor HTML
+                      widget; shared JS/CSS were added with Elementor custom
+                      code so assets can be cached and managed centrally.
                     </p>
                     <p class="p-body">
-                      Engineering notes: the Paneflow runtime controls pane
-                      transforms. I added a matchMedia isMobile check to
-                      simplify animations on small screens, swapped unstable cqw
-                      units for rem/px fallbacks, and refactored absolute text
-                      into flex containers to enable reflow.
-                    </p>
-                    <p class="p-body">
-                      Performance and accessibility aids include translate3d for
-                      compositor animations, IntersectionObserver to lazy‑init
-                      offscreen work, ARIA roles for panels, and explicit focus
-                      management when panes change.
+                      Paneflow sequences GPU‑accelerated translate3d transforms
+                      and opacity fades via a lightweight timeline (rAF) so
+                      transitions stay smooth without forcing layout. An
+                      IntersectionObserver lazy‑inits offscreen panes and
+                      matchMedia/ prefers‑reduced‑motion reduce or disable
+                      motion where appropriate. ARIA states and focused controls
+                      are toggled during transitions to preserve keyboard and
+                      screen‑reader context.
                     </p>
                   </div>
                   <div class="panel-media">
@@ -399,20 +414,20 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      Validate: moderated sessions showed primary tasks work as
-                      expected and revealed a few stacking edge cases on older
-                      phones. These are documented and scheduled for refinement.
+                      User testing went well — the main journeys worked for most
+                      people. We did find a few stacking hiccups on older
+                      phones; screenshots, device details and clear steps to
+                      reproduce are included in the handover notes so the team
+                      can pick them up quickly.
                     </p>
                     <p class="p-body">
-                      QA steps taken: Lighthouse spot checks, contrast testing
-                      for CTAs, and manual focus order verification inside
-                      animated panes. We plan visual regression tests to catch
-                      layout regressions in future updates.
-                    </p>
-                    <p class="p-body">
-                      Metrics plan: instrument key CTAs with analytics events to
-                      track click rates and refine content prioritisation in
-                      subsequent sprints.
+                      QA so far has been lightweight (Lighthouse checks,
+                      contrast verification and manual focus tests inside the
+                      animated panes). Recommended next steps for the team: add
+                      visual regression snapshots to CI, fold a short
+                      accessibility checklist into the release routine, and
+                      nominate an owner to triage the logged breakpoint issues
+                      and verify fixes on the recorded devices.
                     </p>
                   </div>
                   <div class="panel-media">
@@ -431,15 +446,10 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      Outcome: the site shipped with a modern, interaction‑
-                      focused UI that preserved the prototype’s behaviour and
-                      improved content discoverability. Stakeholders reported
-                      the discovery flow felt faster and clearer.
-                    </p>
-                    <p class="p-body">
-                      Follow‑ups: a small set of breakpoint issues on older
-                      phones were deferred to prioritise delivery; these are
-                      scoped and ready for a quick follow‑up sprint.
+                      The site shipped with a modern, interaction‑ focused UI
+                      that preserved the prototype’s behaviour and improved
+                      content discoverability. Stakeholders reported the
+                      discovery flow felt faster and clearer.
                     </p>
                     <p class="p-body">
                       The delivered codebase is structured for growth: clear
