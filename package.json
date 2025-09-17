@@ -1,11 +1,15 @@
 {
+  "homepage": "https://eamrogowicz.github.io/EwelinaPortfolio",
   "scripts": {
     "dev": "tailwindcss -i ./styles.css -o ./dist/styles.css --watch",
-    "build": "tailwindcss -i ./styles.css -o ./dist/styles.css --minify"
+    "build": "tailwindcss -i ./styles.css -o ./dist/styles.css --minify",
+    "predeploy": "npm run build && rm -rf site && mkdir -p site && cp -R index.html profile.html project-*.html media script.js dist site || true",
+    "deploy": "gh-pages -d site"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.15",
     "postcss": "^8.4.29",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "gh-pages": "^5.0.0"
   }
 }
