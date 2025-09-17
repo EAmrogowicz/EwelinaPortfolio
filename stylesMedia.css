@@ -1,0 +1,127 @@
+/* stylesMedia.css
+	 Extracted responsive and media-query specific rules from styles.css
+	 Place this file after the main stylesheet in HTML so media rules override
+	 where necessary.
+*/
+
+/* Desktop tooltip hover/focus */
+@media (hover: hover) and (pointer: fine) {
+  .i-tool[data-label]:hover::after,
+  .i-tool[data-label]:focus::after,
+  .i-tool[data-label]:focus-visible::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+/* Responsive adjustments grouped here */
+@media (max-width: 768px) {
+  .design-tabs .panel {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 2rem 0;
+  }
+  .design-tabs .tabs {
+    gap: 1rem;
+  }
+  .project-tabs {
+    grid-template-columns: 96px 1fr;
+    gap: 2.4rem;
+    padding-bottom: 2.4rem;
+  }
+  .project-tabs .tab {
+    /* font-size: 1rem !important; */
+    padding-right: 0.5rem;
+  }
+  .project-tabs .panel {
+    display: flex !important;
+    flex-direction: column-reverse;
+    gap: 1rem;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .social-links a {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  /* Make mobile menu span the full viewport width on small screens only */
+  .mobile-menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 54px;
+    width: 100vw;
+    max-width: 100vw;
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 40; /* keep header (z-50) above the menu */
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  .mobile-menu.active {
+    padding: 0;
+  }
+
+  .mobile-menu .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .menu-main {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 0;
+    padding-bottom: 2.4rem;
+  }
+  .menu-features {
+    border: none;
+    padding: 0;
+  }
+
+  /* ensure each project article keeps a minimum width on small screens so horizontal scroll works */
+  #projects .projects-row article {
+    min-width: 75vw;
+    flex: 0 0 auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .mobile-menu .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* keep horizontal scroll on tablet for projects row */
+  #projects .container > .projects-row {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+    padding-top: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  #projects .container > .projects-row::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  /* each article takes 2/3 so part of next card is visible */
+  #projects .projects-row article {
+    flex: 0 0 66.6667%;
+    min-width: 66.6667%;
+  }
+}
+
+@media (min-width: 1025px) {
+  #projects .projects-row {
+    gap: 2rem;
+  }
+  #projects .projects-row article {
+    flex: 0 0 calc((100% - 4rem) / 3);
+    max-width: calc((100% - 4rem) / 3);
+  }
+}
