@@ -25,8 +25,8 @@
     gap: 1rem;
   }
   .project-tabs {
-    grid-template-columns: 96px 1fr;
-    gap: 2.4rem;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
     padding-bottom: 2.4rem;
   }
   .project-tabs .tab {
