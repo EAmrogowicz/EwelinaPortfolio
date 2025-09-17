@@ -294,6 +294,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // silent fail; non-critical
   }
 
+  // ---------- Profile: open CV PDF in a new tab ----------
+  try {
+    // target the Download CV button inside the #profile section
+    const profileCvBtn = document.querySelector("#profile .btn-primary");
+    if (profileCvBtn) {
+      // ensure button behaviour is explicit
+      profileCvBtn.setAttribute("type", "button");
+      profileCvBtn.addEventListener("click", (e) => {
+        // open the PDF in a new tab; rely on same-origin relative path
+        window.open(
+          "media/EAmrogowicz-CV-Web.pdf",
+          "_blank",
+          "noopener,noreferrer"
+        );
+      });
+    }
+  } catch (err) {
+    // silent fail; non-critical progressive enhancement
+  }
+
   // ---------- Tool icon labels: show on hover (CSS) and on tap/click for mobile ----------
   (function tooltipsForITools() {
     const tools = document.querySelectorAll(".i-tool[data-label]");
