@@ -281,6 +281,44 @@ document.addEventListener("DOMContentLoaded", () => {
     // silent fail; non-critical
   }
 
+  // ---------- Project EDU: navigate to project-edu.html ----------
+  try {
+    // specifically target the project link inside the #projects section
+    const eduAnchor = document.querySelector(
+      '#projects a[href="project-edu.html"]'
+    );
+    if (eduAnchor) {
+      const eduArticle = eduAnchor.closest("article");
+      const eduBtn = eduArticle
+        ? eduArticle.querySelector(".btn-primary")
+        : null;
+      if (eduBtn) {
+        // ensure explicit button behaviour and avoid accidental form submit
+        eduBtn.setAttribute("type", "button");
+        // dev hint: log once so it's easy to confirm in browser devtools
+        console.info("project-edu button wired");
+        eduBtn.addEventListener("click", (e) => {
+          // same-origin navigation to the project page
+          window.location.href = "project-edu.html";
+        });
+      }
+    }
+  } catch (err) {
+    // silent fail; progressive enhancement
+  }
+
+  // ---------- Project EUROPE: navigate to project-europe.html ----------
+  try {
+    const europeBtn = document.getElementById("btn-europe");
+    if (europeBtn) {
+      europeBtn.addEventListener("click", (e) => {
+        window.location.href = "project-europe.html";
+      });
+    }
+  } catch (err) {
+    // silent fail; non-critical
+  }
+
   // ---------- Project GEH: open live site from hero button ----------
   try {
     const liveBtn = document.querySelector(".hero-geh .btn-primary");
@@ -292,6 +330,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   } catch (err) {
     // silent fail; non-critical
+  }
+
+  // ---------- Hero: navigate to profile.html (View Profile) ----------
+  try {
+    const heroProfileBtn = document.querySelector("#home .btn-primary");
+    if (heroProfileBtn) {
+      // make behaviour explicit and avoid accidental form submit
+      heroProfileBtn.setAttribute("type", "button");
+      heroProfileBtn.addEventListener("click", (e) => {
+        // same-origin navigation to profile page
+        window.location.href = "profile.html";
+      });
+    }
+  } catch (err) {
+    // silent fail; non-critical progressive enhancement
   }
 
   // ---------- Profile: open CV PDF in a new tab ----------
