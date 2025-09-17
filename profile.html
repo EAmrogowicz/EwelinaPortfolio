@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ewelina — Portfolio</title>
+    <!-- Compiled Tailwind CSS -->
+    <link href="./dist/styles.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="media/logo.svg" alt="Ewelina's logo" />
+        </a>
+        <nav>
+          <ul class="social-links">
+            <li>
+              <a
+                href="https://www.linkedin.com/in/ewelina-amrogowicz/"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fa-brands fa-linkedin-in"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/EAmrogowicz"
+                aria-label="GitHub"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+            </li>
+            <li>
+              <a href="mailto:ewelina@amrogowicz.com" aria-label="Email"
+                ><i class="fa-solid fa-envelope"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#" aria-label="Menu" class="menu-toggle icon-accent"
+                ><i class="fa-solid fa-bars"></i
+              ></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="mobile-menu">
+        <div class="container menu-grid">
+          <nav class="menu-main">
+            <ul>
+              <li>
+                <a
+                  href="profile.html"
+                  class="font-accent text-light text-lg sm:text-2xl tracking-wide"
+                  ><span class="text-4xl sm:text-5xl leading-none">01</span
+                  >Profile</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#projects"
+                  class="font-accent text-light text-lg sm:text-2xl tracking-wide"
+                  ><span class="text-4xl sm:text-5xl leading-none">02</span
+                  >Latest Works</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#cta"
+                  class="font-accent text-light text-lg sm:text-2xl tracking-wide"
+                  ><span class="text-4xl sm:text-5xl leading-none">03</span
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <div class="menu-features">
+            <h4
+              class="text-sm sm:text-base font-extrabold leading-normal text-muted font-accent pb-4"
+            >
+              Featured Projects
+            </h4>
+            <div class="feature-cards">
+              <a href="project-geh.html" class="feature-card feature-card--geh">
+                <p
+                  class="text-sm sm:text-base leading-normal text-light tracking-wide"
+                >
+                  Multi-media branding interface
+                </p>
+                <svg
+                  class="feature-icon"
+                  viewBox="0 0 80 80"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M40 26.6667C36.3333 26.6667 33.1944 27.9722 30.5833 30.5833C27.9722 33.1944 26.6667 36.3333 26.6667 40C26.6667 42.8 27.4622 45.33 29.0533 47.59C30.6467 49.85 32.7467 51.4778 35.3533 52.4733C35.7711 52.6622 36.0867 52.9733 36.3 53.4067C36.5089 53.84 36.5267 54.2667 36.3533 54.6867C36.1778 55.08 35.9033 55.3856 35.53 55.6033C35.1567 55.8211 34.7744 55.8422 34.3833 55.6667C31.0544 54.4711 28.3811 52.4478 26.3633 49.5967C24.3456 46.7456 23.3356 43.5467 23.3333 40C23.3333 35.3844 24.9578 31.4533 28.2067 28.2067C31.4556 24.96 35.3867 23.3356 40 23.3333C43.5178 23.3333 46.7156 24.3433 49.5933 26.3633C52.4711 28.3811 54.5022 31.0467 55.6867 34.36C55.8489 34.7533 55.8133 35.1467 55.58 35.54C55.3467 35.9333 55.0333 36.2111 54.64 36.3733C54.18 36.5467 53.74 36.5244 53.32 36.3067C52.9022 36.0889 52.5989 35.75 52.41 35.29C51.4144 32.6833 49.7867 30.5944 47.5267 29.0233C45.2667 27.4522 42.7578 26.6667 40 26.6667ZM40 13.3333C32.5556 13.3333 26.25 15.9167 21.0833 21.0833C15.9167 26.25 13.3333 32.5556 13.3333 40C13.3333 47.4267 15.8311 53.6822 20.8267 58.7667C25.8222 63.8556 31.9844 66.4767 39.3133 66.63C39.7889 66.6544 40.1922 66.8356 40.5233 67.1733C40.8544 67.5111 41.0133 67.9167 41 68.39C40.9867 68.8633 40.8211 69.2678 40.5033 69.6033C40.1856 69.9389 39.7889 70.0989 39.3133 70.0833C35.1511 70.0189 31.2911 69.1489 27.7333 67.4733C24.1778 65.7978 21.0822 63.5856 18.4467 60.8367C15.8111 58.0878 13.7444 54.9144 12.2467 51.3167C10.7489 47.7189 10 43.9467 10 40C10 35.8578 10.7889 31.9622 12.3667 28.3133C13.9467 24.6644 16.0878 21.49 18.79 18.79C21.49 16.0856 24.6644 13.9444 28.3133 12.3667C31.9622 10.7889 35.8578 10 40 10C47.9111 10 54.8567 12.7911 60.8367 18.3733C66.8167 23.9556 69.8989 30.9144 70.0833 39.25C70.11 39.7122 69.9633 40.1122 69.6433 40.45C69.3256 40.7922 68.93 40.97 68.4567 40.9833C67.9833 40.9967 67.5633 40.83 67.1967 40.4833C66.83 40.1367 66.6344 39.7256 66.61 39.25C66.4167 32.2411 63.7278 26.1689 58.5433 21.0333C53.3567 15.9 47.1756 13.3333 40 13.3333ZM64.14 67.5667L49.8733 53.25L48.14 58.5267C47.9067 59.1756 47.4644 59.4978 46.8133 59.4933C46.1644 59.4844 45.7444 59.1556 45.5533 58.5067L40.7233 42.4233C40.5878 41.8989 40.7056 41.45 41.0767 41.0767C41.45 40.7056 41.8989 40.5878 42.4233 40.7233L58.5067 45.5533C59.1556 45.7444 59.4833 46.1644 59.49 46.8133C59.4967 47.4622 59.1744 47.9044 58.5233 48.14L53.25 49.8733L67.5833 64.14C68.0589 64.6156 68.2967 65.1867 68.2967 65.8533C68.2967 66.52 68.0589 67.09 67.5833 67.5633C67.1078 68.0367 66.5345 68.2744 65.8633 68.2767C65.1922 68.2789 64.6178 68.0411 64.14 67.5633"
+                    fill="currentColor"
+                  />
+                </svg>
+              </a>
+              <a href="project-edu.html" class="feature-card feature-card--edu">
+                <p
+                  class="text-sm sm:text-base leading-normal text-light tracking-wide"
+                >
+                  A recognition platform
+                </p>
+                <svg
+                  class="feature-icon"
+                  viewBox="0 0 80 80"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M40 26.6667C36.3333 26.6667 33.1944 27.9722 30.5833 30.5833C27.9722 33.1944 26.6667 36.3333 26.6667 40C26.6667 42.8 27.4622 45.33 29.0533 47.59C30.6467 49.85 32.7467 51.4778 35.3533 52.4733C35.7711 52.6622 36.0867 52.9733 36.3 53.4067C36.5089 53.84 36.5267 54.2667 36.3533 54.6867C36.1778 55.08 35.9033 55.3856 35.53 55.6033C35.1567 55.8211 34.7744 55.8422 34.3833 55.6667C31.0544 54.4711 28.3811 52.4478 26.3633 49.5967C24.3456 46.7456 23.3356 43.5467 23.3333 40C23.3333 35.3844 24.9578 31.4533 28.2067 28.2067C31.4556 24.96 35.3867 23.3356 40 23.3333C43.5178 23.3333 46.7156 24.3433 49.5933 26.3633C52.4711 28.3811 54.5022 31.0467 55.6867 34.36C55.8489 34.7533 55.8133 35.1467 55.58 35.54C55.3467 35.9333 55.0333 36.2111 54.64 36.3733C54.18 36.5467 53.74 36.5244 53.32 36.3067C52.9022 36.0889 52.5989 35.75 52.41 35.29C51.4144 32.6833 49.7867 30.5944 47.5267 29.0233C45.2667 27.4522 42.7578 26.6667 40 26.6667ZM40 13.3333C32.5556 13.3333 26.25 15.9167 21.0833 21.0833C15.9167 26.25 13.3333 32.5556 13.3333 40C13.3333 47.4267 15.8311 53.6822 20.8267 58.7667C25.8222 63.8556 31.9844 66.4767 39.3133 66.63C39.7889 66.6544 40.1922 66.8356 40.5233 67.1733C40.8544 67.5111 41.0133 67.9167 41 68.39C40.9867 68.8633 40.8211 69.2678 40.5033 69.6033C40.1856 69.9389 39.7889 70.0989 39.3133 70.0833C35.1511 70.0189 31.2911 69.1489 27.7333 67.4733C24.1778 65.7978 21.0822 63.5856 18.4467 60.8367C15.8111 58.0878 13.7444 54.9144 12.2467 51.3167C10.7489 47.7189 10 43.9467 10 40C10 35.8578 10.7889 31.9622 12.3667 28.3133C13.9467 24.6644 16.0878 21.49 18.79 18.79C21.49 16.0856 24.6644 13.9444 28.3133 12.3667C31.9622 10.7889 35.8578 10 40 10C47.9111 10 54.8567 12.7911 60.8367 18.3733C66.8167 23.9556 69.8989 30.9144 70.0833 39.25C70.11 39.7122 69.9633 40.1122 69.6433 40.45C69.3256 40.7922 68.93 40.97 68.4567 40.9833C67.9833 40.9967 67.5633 40.83 67.1967 40.4833C66.83 40.1367 66.6344 39.7256 66.61 39.25C66.4167 32.2411 63.7278 26.1689 58.5433 21.0333C53.3567 15.9 47.1756 13.3333 40 13.3333ZM64.14 67.5667L49.8733 53.25L48.14 58.5267C47.9067 59.1756 47.4644 59.4978 46.8133 59.4933C46.1644 59.4844 45.7444 59.1556 45.5533 58.5067L40.7233 42.4233C40.5878 41.8989 40.7056 41.45 41.0767 41.0767C41.45 40.7056 41.8989 40.5878 42.4233 40.7233L58.5067 45.5533C59.1556 45.7444 59.4833 46.1644 59.49 46.8133C59.4967 47.4622 59.1744 47.9044 58.5233 48.14L53.25 49.8733L67.5833 64.14C68.0589 64.6156 68.2967 65.1867 68.2967 65.8533C68.2967 66.52 68.0589 67.09 67.5833 67.5633C67.1078 68.0367 66.5345 68.2744 65.8633 68.2767C65.1922 68.2789 64.6178 68.0411 64.14 67.5633"
+                    fill="currentColor"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- section: HERO -->
+      <section
+        id="profile"
+        class="profile relative min-h-[calc(100dvh-70px)] flex items-end sm:items-center justify-start text-left overflow-hidden pt-8 pb-20 sm:pb-28"
+      >
+        <div class="container">
+          <h1 class="h1">Hi — I'm Ewelina.</h1>
+          <article
+            class="flex-1 gap-8 sm:gap-20 flex flex-col sm:flex-row items-start sm:items-stretch min-h-0 mb-8"
+          >
+            <div class="w-full sm:w-1/2">
+              <p class="p-body">
+                I'm a UX/UI designer with 10+ years of experience. My training
+                in architecture taught me to combine creativity with careful
+                thinking—an approach I now use to design and build web
+                experiences. Recently I worked on 50+ websites, mainly using
+                WordPress and Elementor, and I often add custom HTML, CSS and
+                JavaScript when a project needs it.
+              </p>
+              <p class="p-body">
+                I enjoy taking ideas from first sketches through to launch. I
+                balance strategy and hands-on delivery—whether that’s defining
+                user flows, shaping visual direction, or shipping a polished,
+                responsive site.
+              </p>
+              <p class="p-body">
+                My goal is simple: create digital experiences that look great
+                and are easy to use.
+              </p>
+            </div>
+
+            <!-- Stats / highlights to match attached design -->
+            <div
+              class="w-full sm:w-1/2 grid grid-cols-2 gap-x-4 gap-y-12 sm:gap-8"
+            >
+              <div
+                class="flex flex-col sm:flex-row align-top justify-start gap-2 sm:gap-4"
+              >
+                <i class="fa-regular fa-star i-skill"></i>
+                <div
+                  class="flex flex-col h-min align-top justify-start gap-0 pl-2 sm:pl-4 border-l border-primary"
+                >
+                  <h3 class="h3 font-bold pb-0">10+ Years Design</h3>
+                  <p class="p-body text-muted py-0 font-accent">experience</p>
+                </div>
+              </div>
+
+              <div
+                class="flex flex-col sm:flex-row align-top justify-start gap-2 sm:gap-4"
+              >
+                <i class="fa-solid fa-qrcode i-skill"></i>
+                <div
+                  class="flex flex-col h-min align-top justify-start gap-0 pl-2 sm:pl-4 border-l border-primary"
+                >
+                  <h3 class="h3 font-bold pb-0">40+ Web Projects</h3>
+                  <p class="p-body text-muted py-0 font-accent">completed</p>
+                </div>
+              </div>
+
+              <div
+                class="flex flex-col sm:flex-row align-top justify-start gap-2 sm:gap-4"
+              >
+                <i class="fa-regular fa-pen-to-square i-skill"></i>
+                <div
+                  class="flex flex-col h-min align-top justify-start gap-0 pl-2 sm:pl-4 border-l border-primary"
+                >
+                  <h3 class="h3 font-bold pb-0">Lead on Design</h3>
+                  <p class="p-body text-muted py-0 font-accent">
+                    direction &amp; delivery
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex flex-col sm:flex-row align-top justify-start gap-2 sm:gap-4"
+              >
+                <i class="fa-regular fa-calendar-check i-skill"></i>
+                <div
+                  class="flex flex-col h-min align-top justify-start gap-0 pl-2 sm:pl-4 border-l border-primary"
+                >
+                  <h3 class="h3 font-bold pb-0">100% on Time</h3>
+                  <p class="p-body text-muted py-0 font-accent">
+                    delivery rate
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+          <button class="btn-primary">
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span
+              class="btn-text font-accent tracking-wide text-base sm:text-lg text-accent font-bold leading-[1.6] text-center uppercase"
+              >Download CV</span
+            >
+          </button>
+        </div>
+      </section>
+
+      <!-- section: MY SUPERPOWERS -->
+      <section
+        id="my-superpowers"
+        class="relative overflow-hidden pb-20 sm:pb-28"
+      >
+        <div class="container">
+          <h2 class="h2">My Superpowers</h2>
+          <article
+            class="flex-1 gap-8 sm:gap-10 flex flex-col sm:flex-row items-start"
+          >
+            <div class="w-full sm:w-1/4 overflow-hidden self-stretch min-h-0">
+              <img
+                src="media/img_superpowers.webp"
+                alt="Superpower"
+                class="object-cover w-full h-full object-[10%]"
+              />
+            </div>
+
+            <div
+              class="grid w-full sm:w-3/4 grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8"
+            >
+              <div class="flex flex-col align-top justify-start gap-0">
+                <h3 class="h3 font-bold py-0">Creative Design</h3>
+                <p class="p-body">
+                  I bring together creativity and empathy to craft experiences
+                  that not only look great but also resonate deeply with users.
+                </p>
+              </div>
+
+              <div class="flex flex-col align-top justify-start gap-0">
+                <h3 class="h3 font-bold py-0">System Thinking</h3>
+                <p class="p-body">
+                  I thrive in complex, ambiguous projects—always connecting the
+                  dots across systems and anticipating diverse use cases.
+                </p>
+              </div>
+
+              <div class="flex flex-col align-top justify-start gap-0">
+                <h3 class="h3 font-bold py-0">Problem Solving</h3>
+                <p class="p-body">
+                  I approach challenges with creativity and optimism, turning
+                  obstacles into opportunities and complexity into clarity.
+                </p>
+              </div>
+
+              <div class="flex flex-col align-top justify-start gap-0">
+                <h3 class="h3 font-bold py-0">Cross-team Collaboration</h3>
+                <p class="p-body">
+                  I believe design is a team sport. By inviting stakeholders in
+                  early—through workshops and feedback loops—I ensure ideas grow
+                  stronger together.
+                </p>
+              </div>
+
+              <div class="flex flex-col align-top justify-start gap-0">
+                <h3 class="h3 font-bold py-0">Front-end Web Development</h3>
+                <p class="p-body">
+                  I blend design with code, building interactive and engaging
+                  experiences that feel seamless and alive.
+                </p>
+              </div>
+
+              <div class="flex flex-col align-top justify-start gap-0">
+                <h3 class="h3 font-bold py-0">Interactive Prototyping</h3>
+                <p class="p-body">
+                  I love bringing ideas to life step by step, refining details
+                  with each iteration to continuously improve the user
+                  experience.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- section: SKILLS AND TOOLS -->
+      <section
+        id="skills-tools"
+        class="relative overflow-hidden pb-16 sm:pb-16"
+      >
+        <div class="container">
+          <h2 class="h2 mb-4 sm:mb-0">Skills & Tools</h2>
+          <article
+            class="grid grid-cols-2 sm:grid-cols-3 gap-0 justify-center align-middle items-center overflow-hidden"
+          >
+            <div
+              class="col-span-2 sm:col-span-1 grid grid-cols-5 gap-4 place-items-center"
+            >
+              <img src="media/tools/wordpress.svg" alt="WordPress" />
+              <img src="media/tools/elementor.svg" alt="Elementor" />
+              <img src="media/tools/html.svg" alt="HTML" />
+              <img src="media/tools/css.svg" alt="CSS" />
+              <img src="media/tools/javascript.svg" alt="JavaScript" />
+              <img src="media/tools/figma.svg" alt="Figma" />
+              <img src="media/tools/vsCode.svg" alt="VS Code" />
+              <img src="media/tools/adobeCreative.svg" alt="Adobe Creative" />
+              <img src="media/tools/sketchUp.svg" alt="SketchUp" />
+              <img src="media/tools/paneFlow.svg" alt="PaneFlow" />
+            </div>
+
+            <img
+              src="media/ui-ux_mockup.webp"
+              alt="UI/UX Mockup"
+              class="object-cover w-full h-full min-h-[20rem] sm:min-h-[30rem] object-center mx-auto"
+            />
+
+            <div class="flex pl-4 sm:pl-0">
+              <ul class="p-body list-none p-0 m-0 space-y-2">
+                <li>UX Strategy</li>
+                <li>UI / Visual Design</li>
+                <li>Wireframing</li>
+                <li>Storytelling</li>
+                <li>Sketching &amp; Ideation</li>
+                <li>Design Research</li>
+                <li>Iterative Prototyping</li>
+                <li>Usability Testing</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-flex">
+        <a href="index.html" class="logo">
+          <img src="media/logo.svg" alt="Ewelina's logo" />
+        </a>
+        <span>Copyright © 2025 | All Rights Reserved</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
