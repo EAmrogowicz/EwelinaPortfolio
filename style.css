@@ -288,10 +288,10 @@
   color: #fff;
 }
 .feature-cards .feature-card:nth-child(1) {
-  background-image: url("../media/project-gehMockup.webp");
+  background-image: url("media/project-gehMockup.webp");
 }
 .feature-cards .feature-card:nth-child(2) {
-  background-image: url("../media/project-eduMockup.webp");
+  background-image: url("media/project-eduMockup.webp");
 }
 
 .feature-card::after {
@@ -465,7 +465,7 @@ button.btn-primary:hover .btn-text {
       rgba(255, 255, 255, 1) 0%,
       rgba(255, 255, 255, 0) 40%
     ),
-    url("../media/smokeBg.webp");
+    url("media/smokeBg.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -476,7 +476,7 @@ button.btn-primary:hover .btn-text {
       rgba(255, 255, 255, 1) 0%,
       rgba(255, 255, 255, 0) 100%
     ),
-    url("../media/smokeBg.webp");
+    url("media/smokeBg.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
