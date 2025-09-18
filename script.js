@@ -153,36 +153,146 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let pCurrent = 0;
     let pAnimating = false;
-
-    // initialize: ensure all panels are stacked (visible) so we can translate the track
-    pPanels.forEach((panel) => {
-      panel.style.display = "grid";
-    });
-
-    // Use percentage-based sliding so CSS-defined track/panel heights work reliably
+    // Use percentage-based sliding on desktop, but switch to native scrolling on small screens
     const panelCount = pPanels.length;
     const panelPercent = 100 / panelCount;
 
+    const isMobileView = () => window.matchMedia("(max-width: 768px)").matches;
+
     const setProjectTrack = (idx) => {
       if (!pTrack) return;
-      pTrack.style.transform = `translateY(-${idx * panelPercent}%)`;
+      if (isMobileView()) {
+        // on mobile, scroll the page so the target panel is visible below the sticky header
+        const target = pPanels[idx];
+        if (target) {
+          scrollToPanel(target);
+        }
+      } else {
+        // desktop: percentage translateY sliding
+        pTrack.style.transform = `translateY(-${idx * panelPercent}%)`;
+      }
+    };
+
+    // Scroll helper that accounts for a sticky header height
+    const scrollToPanel = (panel) => {
+      if (!panel) return;
+      const header = document.querySelector("header");
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      const gap = 12; // small gap between header and panel
+      const rect = panel.getBoundingClientRect();
+      const top = rect.top + window.scrollY - headerHeight - gap;
+      window.scrollTo({ top, behavior: "smooth" });
     };
 
     // initial
+    // IntersectionObserver to watch panels in mobile stacked flow
+    let observer = null;
+
+    const createObserver = () => {
+      if (observer) observer.disconnect();
+      // observe panels relative to the viewport (root: null)
+      const options = {
+        root: null,
+        rootMargin: "0px 0px -30% 0px", // consider panel active when majority visible
+        threshold: [0.25, 0.5, 0.75],
+      };
+
+      observer = new IntersectionObserver((entries) => {
+        // pick the most visible panel among entries
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (!visible.length) return;
+        visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        const topEntry = visible[0];
+        const panel = topEntry.target;
+        const idx = Array.prototype.indexOf.call(pPanels, panel);
+        if (idx >= 0 && idx !== pCurrent) {
+          pTabs.forEach((t, i) => {
+            const isActive = i === idx;
+            t.classList.toggle("active", isActive);
+            t.setAttribute("aria-selected", isActive ? "true" : "false");
+            t.tabIndex = isActive ? 0 : -1;
+          });
+          pPanels.forEach((pl, i) => {
+            const isAct = i === idx;
+            pl.classList.toggle("is-active", isAct);
+            pl.setAttribute("aria-hidden", isAct ? "false" : "true");
+            pl.tabIndex = isAct ? 0 : -1;
+          });
+          pCurrent = idx;
+        }
+      }, options);
+
+      pPanels.forEach((panel) => observer.observe(panel));
+    };
+
     const initProject = () => {
-      // make track and panels sized by percentage so they fill the carousel
-      if (pTrack) pTrack.style.height = `${panelCount * 100}%`;
-      pPanels.forEach((panel) => {
-        panel.style.height = `${panelPercent}%`;
+      const mobile = isMobileView();
+
+      if (mobile) {
+        // stacked panels, allow native scrolling inside the track
+        // clear any desktop-imposed heights/transforms so panels flow
+        pTrack.style.height = "";
+        pTrack.style.transform = "";
+        pTrack.style.overflowY = "auto";
+        pTrack.style.webkitOverflowScrolling = "touch";
+        pPanels.forEach((panel) => {
+          panel.style.display = "block";
+          panel.style.height = "auto";
+          panel.style.pointerEvents = "auto";
+          panel.style.opacity = 1;
+          panel.style.position = "relative";
+        });
+
+        // use IntersectionObserver to track active panel
+        createObserver();
+
+        // ensure left rail tabs sit below the sticky header (avoid being covered)
+        const setTabsOffset = () => {
+          const header = document.querySelector("header");
+          const headerHeight = header
+            ? header.getBoundingClientRect().height
+            : 0;
+          const extraGap = 4; // small breathing room
+          const tabsEls = document.querySelectorAll(".project-tabs .tabs");
+          tabsEls.forEach((el) => {
+            el.style.top = `${headerHeight + extraGap}px`;
+          });
+        };
+        setTabsOffset();
+      } else {
+        // desktop behaviour: set track height and percentage-based panel heights
+        if (observer) {
+          observer.disconnect();
+          observer = null;
+        }
+        pTrack.style.overflowY = "hidden";
+        pTrack.style.height = `${panelCount * 100}%`;
+        pPanels.forEach((panel) => {
+          panel.style.display = "grid";
+          panel.style.height = `${panelPercent}%`;
+          panel.style.pointerEvents = "none";
+          panel.style.position = "";
+        });
+
+        // clear any inline 'top' applied for mobile so desktop layout resets cleanly
+        const tabsEls = document.querySelectorAll(".project-tabs .tabs");
+        tabsEls.forEach((el) => {
+          el.style.top = "";
+        });
+      }
+
+      // mark active panel visually and enable pointer events for it
+      pPanels.forEach((panel, i) => {
+        const active = i === pCurrent;
+        panel.classList.toggle("is-active", active);
+        panel.tabIndex = active ? 0 : -1;
+        panel.style.pointerEvents = active ? "auto" : mobile ? "auto" : "none";
       });
 
-      // mark active panel visually
-      pPanels.forEach((panel, i) => {
-        panel.classList.toggle("is-active", i === pCurrent);
-        panel.style.pointerEvents = i === pCurrent ? "auto" : "none";
-      });
+      // position track to current panel (scroll on mobile, translate on desktop)
       setProjectTrack(pCurrent);
     };
+
     initProject();
 
     // re-init on load and when images inside panels load (to ensure sizes)
@@ -216,9 +326,15 @@ document.addEventListener("DOMContentLoaded", () => {
         panel.setAttribute("aria-hidden", visible ? "false" : "true");
         panel.tabIndex = visible ? 0 : -1;
         panel.classList.toggle("is-active", visible);
-        panel.style.pointerEvents = visible ? "auto" : "none";
+        // pointer events handled in initProject; ensure active panel is interactable
+        panel.style.pointerEvents = visible
+          ? "auto"
+          : isMobileView()
+          ? "auto"
+          : "none";
       });
 
+      // position track (will scroll on mobile or translate on desktop)
       setProjectTrack(idx);
       pCurrent = idx;
 
@@ -247,8 +363,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     window.addEventListener("resize", () => {
+      // Reconfigure layout when crossing responsive breakpoints
       pTrack.style.transition = "none";
-      setProjectTrack(pCurrent);
+      initProject();
+      // force reflow then restore transition
       // eslint-disable-next-line no-unused-expressions
       pTrack.offsetHeight;
       pTrack.style.transition = "";
