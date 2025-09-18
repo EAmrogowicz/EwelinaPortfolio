@@ -159,12 +159,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isMobileView = () => window.matchMedia("(max-width: 768px)").matches;
 
-    const setProjectTrack = (idx) => {
+    const setProjectTrack = (idx, userTriggered = false) => {
       if (!pTrack) return;
       if (isMobileView()) {
         // on mobile, scroll the page so the target panel is visible below the sticky header
+        // Avoid auto-scrolling on initial load. Only scroll for explicit user
+        // navigation (tab clicks) or when the current URL hash targets the panel.
         const target = pPanels[idx];
-        if (target) scrollToPanel(target);
+        if (target) {
+          const hashMatches = window.location.hash === `#${target.id}`;
+          if (userTriggered || hashMatches) {
+            scrollToPanel(target);
+          }
+        }
       } else {
         // desktop: percentage translateY sliding
         pTrack.style.transform = `translateY(-${idx * panelPercent}%)`;
@@ -272,7 +279,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // position track to current panel (scroll on mobile, translate on desktop)
-      setProjectTrack(pCurrent);
+      // pass `false` to avoid forcing an initial scroll on mobile when arriving
+      // from another page.
+      setProjectTrack(pCurrent, false);
     };
 
     // Scroll helper that accounts for a sticky header height
@@ -327,7 +336,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // position track (will scroll on mobile or translate on desktop)
-      setProjectTrack(idx);
+      // mark this as user-triggered so mobile will scroll smoothly.
+      setProjectTrack(idx, true);
       pCurrent = idx;
 
       // clear animating after CSS transition duration
