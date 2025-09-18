@@ -159,13 +159,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isMobileView = () => window.matchMedia("(max-width: 768px)").matches;
 
-    const setProjectTrack = (idx) => {
+    const setProjectTrack = (idx, userTriggered = false) => {
       if (!pTrack) return;
       if (isMobileView()) {
         // on mobile, scroll the page so the target panel is visible below the sticky header
+        // NOTE: avoid auto-scrolling on initial page load. Only scroll when the
+        // user has triggered navigation (tab click) or when the URL hash
+        // explicitly targets the panel (deep link).
         const target = pPanels[idx];
         if (target) {
-          scrollToPanel(target);
+          const hashMatches = window.location.hash === `#${target.id}`;
+          if (userTriggered || hashMatches) {
+            scrollToPanel(target);
+          }
         }
       } else {
         // desktop: percentage translateY sliding
@@ -290,7 +296,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // position track to current panel (scroll on mobile, translate on desktop)
-      setProjectTrack(pCurrent);
+      // pass `false` to avoid forcing an initial scroll on mobile when the
+      // user has just navigated to the page from elsewhere.
+      setProjectTrack(pCurrent, false);
     };
 
     initProject();
@@ -335,7 +343,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // position track (will scroll on mobile or translate on desktop)
-      setProjectTrack(idx);
+      // mark this as a user-triggered action so mobile will smoothly scroll.
+      setProjectTrack(idx, true);
       pCurrent = idx;
 
       // clear animating after CSS transition duration
