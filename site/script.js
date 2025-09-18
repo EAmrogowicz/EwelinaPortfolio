@@ -163,9 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!pTrack) return;
       if (isMobileView()) {
         // on mobile, scroll the page so the target panel is visible below the sticky header
-        // NOTE: avoid auto-scrolling on initial page load. Only scroll when the
-        // user has triggered navigation (tab click) or when the URL hash
-        // explicitly targets the panel (deep link).
+        // Avoid auto-scrolling on initial load. Only scroll for explicit user
+        // navigation (tab clicks) or when the current URL hash targets the panel.
         const target = pPanels[idx];
         if (target) {
           const hashMatches = window.location.hash === `#${target.id}`;
@@ -179,32 +178,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    // Scroll helper that accounts for a sticky header height
-    const scrollToPanel = (panel) => {
-      if (!panel) return;
-      const header = document.querySelector("header");
-      const headerHeight = header ? header.getBoundingClientRect().height : 0;
-      const gap = 12; // small gap between header and panel
-      const rect = panel.getBoundingClientRect();
-      const top = rect.top + window.scrollY - headerHeight - gap;
-      window.scrollTo({ top, behavior: "smooth" });
-    };
-
-    // initial
     // IntersectionObserver to watch panels in mobile stacked flow
     let observer = null;
 
     const createObserver = () => {
       if (observer) observer.disconnect();
-      // observe panels relative to the viewport (root: null)
+      // observe panels relative to the viewport
       const options = {
         root: null,
-        rootMargin: "0px 0px -30% 0px", // consider panel active when majority visible
+        rootMargin: "0px 0px -30% 0px",
         threshold: [0.25, 0.5, 0.75],
       };
 
       observer = new IntersectionObserver((entries) => {
-        // pick the most visible panel among entries
         const visible = entries.filter((e) => e.isIntersecting);
         if (!visible.length) return;
         visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
@@ -235,18 +221,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const mobile = isMobileView();
 
       if (mobile) {
-        // stacked panels, allow native scrolling inside the track
-        // clear any desktop-imposed heights/transforms so panels flow
+        // stacked panels: clear any desktop-imposed heights/transforms so panels flow
         pTrack.style.height = "";
         pTrack.style.transform = "";
-        pTrack.style.overflowY = "auto";
-        pTrack.style.webkitOverflowScrolling = "touch";
+        pTrack.style.overflowY = "";
         pPanels.forEach((panel) => {
-          panel.style.display = "block";
-          panel.style.height = "auto";
-          panel.style.pointerEvents = "auto";
-          panel.style.opacity = 1;
-          panel.style.position = "relative";
+          panel.style.display = "";
+          panel.style.height = "";
+          panel.style.pointerEvents = "";
+          panel.style.opacity = "";
+          panel.style.position = "";
         });
 
         // use IntersectionObserver to track active panel
@@ -266,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         setTabsOffset();
       } else {
-        // desktop behaviour: set track height and percentage-based panel heights
         if (observer) {
           observer.disconnect();
           observer = null;
@@ -296,9 +279,20 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // position track to current panel (scroll on mobile, translate on desktop)
-      // pass `false` to avoid forcing an initial scroll on mobile when the
-      // user has just navigated to the page from elsewhere.
+      // pass `false` to avoid forcing an initial scroll on mobile when arriving
+      // from another page.
       setProjectTrack(pCurrent, false);
+    };
+
+    // Scroll helper that accounts for a sticky header height
+    const scrollToPanel = (panel) => {
+      if (!panel) return;
+      const header = document.querySelector("header");
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      const gap = 12; // small gap between header and panel
+      const rect = panel.getBoundingClientRect();
+      const top = rect.top + window.scrollY - headerHeight - gap;
+      window.scrollTo({ top, behavior: "smooth" });
     };
 
     initProject();
@@ -334,7 +328,6 @@ document.addEventListener("DOMContentLoaded", () => {
         panel.setAttribute("aria-hidden", visible ? "false" : "true");
         panel.tabIndex = visible ? 0 : -1;
         panel.classList.toggle("is-active", visible);
-        // pointer events handled in initProject; ensure active panel is interactable
         panel.style.pointerEvents = visible
           ? "auto"
           : isMobileView()
@@ -343,7 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // position track (will scroll on mobile or translate on desktop)
-      // mark this as a user-triggered action so mobile will smoothly scroll.
+      // mark this as user-triggered so mobile will scroll smoothly.
       setProjectTrack(idx, true);
       pCurrent = idx;
 
