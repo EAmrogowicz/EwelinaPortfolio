@@ -2,7 +2,7 @@
   "homepage": "https://eamrogowicz.github.io/EwelinaPortfolio",
   "scripts": {
     "dev": "tailwindcss -i ./style.css -o ./dist/styles.css --watch",
-    "build": "tailwindcss -i ./style.css -o ./dist/style.css --minify",
+    "build": "tailwindcss -i ./style.css -o ./dist/styles.css --minify",
     "predeploy": "npm run build && rm -rf site && mkdir -p site && cp -R index.html profile.html project-*.html media script.js dist site || true",
     "deploy": "gh-pages -d site"
   },
