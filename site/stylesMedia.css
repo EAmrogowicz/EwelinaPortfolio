@@ -1,7 +1,7 @@
 /* stylesMedia.css
-	Extracted responsive and media-query specific rules from styles.css
-	Place this file after the main stylesheet in HTML so media rules override
-	where necessary.
+	 Extracted responsive and media-query specific rules from styles.css
+	 Place this file after the main stylesheet in HTML so media rules override
+	 where necessary.
 */
 
 /* Desktop tooltip hover/focus */
