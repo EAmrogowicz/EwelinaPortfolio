@@ -22,7 +22,7 @@
   --light-gray: #eff2f9;
   --bg: #ffffff;
   --max-width: 1240px;
-  --header-height: 64px;
+  --header-height: 40px;
   --font-accent: "Marcellus", serif;
 }
 
@@ -622,7 +622,11 @@ button.btn-primary:hover .btn-text {
   border-right: 1px solid var(--gray);
   text-align: right;
   justify-content: center;
-  height: 80%;
+  /* reduce height by header so the sticky header doesn't overlap the last tab */
+  height: calc(100vh - var(--header-height));
+  max-height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .project-tabs .tab {
   -webkit-appearance: none;

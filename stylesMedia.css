@@ -24,20 +24,117 @@
   .design-tabs .tabs {
     gap: 1rem;
   }
+  /* Project tabs mobile: left rail + scrollable carousel within viewport */
   .project-tabs {
-    grid-template-columns: 80px 1fr;
+    grid-template-columns: 48px 1fr;
     gap: 1rem;
-    padding-bottom: 2.4rem;
+    align-items: stretch;
+    height: auto !important;
   }
+
+  /* tabs: vertical rail on the left that fills the viewport height */
+  /* tabs: vertical rail on the left that fills the viewport height
+     consolidated: sticky, scrollable and offset by header height */
+  .project-tabs .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-align: center;
+    justify-content: flex-start;
+    padding: 0;
+    box-sizing: border-box;
+    align-items: center;
+    /* stick below the header and allow internal scrolling if content overflows */
+    position: sticky;
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
+    max-height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .project-tabs .tab {
-    /* font-size: 1rem !important; */
-    padding-right: 0.5rem;
+    padding-right: 0;
+    padding-left: 0;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    text-orientation: mixed;
+    width: 100%;
   }
+
+  /* Carousel: allow internal vertical scrolling while keeping the left rail fixed */
+  .project-tabs .carousel {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 0 !important; /* override desktop min-height so mobile can be shorter */
+    box-sizing: border-box;
+    display: block;
+  }
+
+  /* Ensure the overview section doesn't clip mobile stacked panels */
+  #overview {
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+  }
+
+  /* container inside overview should size to content on mobile and align to top */
+  #overview > .container {
+    height: auto !important;
+    display: block !important;
+    align-items: flex-start !important;
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+  }
+
+  /* carousel-track: ensure desktop JS transforms are neutralised on mobile
+     and let panels flow naturally in the column */
+  .project-tabs .carousel-track {
+    display: block !important;
+    position: static !important;
+    transform: none !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem 0;
+  }
+
+  /* panels: use flex column on mobile and order media before text */
   .project-tabs .panel {
     display: flex !important;
-    flex-direction: column-reverse;
-    gap: 1rem;
-    justify-content: center;
+    flex-direction: column !important;
+    padding: 0 0 4.8rem 0;
+    gap: 0rem;
+    min-height: 0;
+    position: relative; /* ensure panels flow in document and don't stack absolutely */
+    box-sizing: border-box;
+  }
+
+  /* ensure media appears before text on mobile regardless of source order */
+  .project-tabs .panel .panel-media {
+    order: -1 !important;
+  }
+  .project-tabs .panel .panel-text {
+    order: 0 !important;
+  }
+
+  /* mobile: active tab should show a right-side border (next to the carousel)
+     clear any left border inherited from desktop rules */
+  .project-tabs .tab.active,
+  .project-tabs .tab[aria-selected="true"] {
+    border-left: 4px solid var(--primary) !important;
+    border-right: none !important;
+    color: var(--primary) !important;
+    font-weight: 900 !important;
+  }
+
+  /* make images inside panels responsive and not overflow */
+  .project-tabs .panel img {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 }
 
