@@ -452,6 +452,43 @@ document.addEventListener("DOMContentLoaded", () => {
     // silent fail; non-critical
   }
 
+  // ---------- Project GEH: open live site from #geh-live button ----------
+  try {
+    const gehLiveBtn = document.getElementById("geh-live");
+    if (gehLiveBtn) {
+      // explicit button behaviour to avoid accidental form submit
+      gehLiveBtn.setAttribute("type", "button");
+      gehLiveBtn.addEventListener("click", (e) => {
+        // Open the external site in a new tab safely
+        window.open(
+          "https://globaleducationhub.com",
+          "_blank",
+          "noopener,noreferrer"
+        );
+      });
+    }
+  } catch (err) {
+    // silent fail; non-critical
+  }
+
+  // ---------- Project EUROPE: open live site from #europe-live button ----------
+  try {
+    const europeLiveBtn = document.getElementById("europe-live");
+    if (europeLiveBtn) {
+      europeLiveBtn.setAttribute("type", "button");
+      europeLiveBtn.addEventListener("click", (e) => {
+        // open external site in new tab safely
+        window.open(
+          "https://globalstudyeurope.com",
+          "_blank",
+          "noopener,noreferrer"
+        );
+      });
+    }
+  } catch (err) {
+    // silent fail; non-critical
+  }
+
   // ---------- Hero: navigate to profile.html (View Profile) ----------
   try {
     const heroProfileBtn = document.querySelector("#home .btn-primary");

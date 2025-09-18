@@ -693,15 +693,15 @@ button.btn-primary:hover .btn-text {
 /* -----------------------------
    Call to action & footer
    ----------------------------- */
-  .cta {
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 60%
-      ),
-      url("media/smokeBgFooter.webp");
-    background-size: cover;
-    background-position: center;
+.cta {
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 60%
+    ),
+    url("media/smokeBgFooter.webp");
+  background-size: cover;
+  background-position: center;
 }
 
 footer {
