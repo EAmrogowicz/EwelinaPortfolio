@@ -56703,11 +56703,11 @@ header{
 }
 
 .feature-cards .feature-card:nth-child(1) {
-  background-image: url("../media/project-gehMockup.webp");
+  background-image: url("/EwelinaPortfolio/media/project-gehMockup.webp");
 }
 
 .feature-cards .feature-card:nth-child(2) {
-  background-image: url("../media/project-eduMockup.webp");
+  background-image: url("/EwelinaPortfolio/media/project-eduMockup.webp");
 }
 
 .feature-card::after {
@@ -56902,7 +56902,7 @@ button.btn-primary:hover .btn-text {
       rgba(255, 255, 255, 1) 0%,
       rgba(255, 255, 255, 0) 40%
     ),
-    url("../media/smokeBg.webp");
+    url("/EwelinaPortfolio/media/smokeBg.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -56914,7 +56914,7 @@ button.btn-primary:hover .btn-text {
       rgba(255, 255, 255, 1) 0%,
       rgba(255, 255, 255, 0) 100%
     ),
-    url("../media/smokeBg.webp");
+    url("/EwelinaPortfolio/media/smokeBg.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -57166,7 +57166,7 @@ button.btn-primary:hover .btn-text {
       rgba(255, 255, 255, 1) 0%,
       rgba(255, 255, 255, 0) 60%
     ),
-    url("../media/smokeBgFooter.webp");
+    url("/EwelinaPortfolio/media/smokeBgFooter.webp");
   background-size: cover;
   background-position: center;
 }
