@@ -491,7 +491,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- Hero: navigate to profile.html (View Profile) ----------
   try {
-    const heroProfileBtn = document.querySelector("#home .btn-primary");
+    const heroProfileBtn = document.querySelector("#btn-profile");
     if (heroProfileBtn) {
       // make behaviour explicit and avoid accidental form submit
       heroProfileBtn.setAttribute("type", "button");

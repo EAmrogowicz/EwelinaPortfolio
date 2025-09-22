@@ -229,7 +229,7 @@
       <!-- section: OVERVIEW -->
       <section
         id="overview"
-        class="relative overflow-hidden min-h-[calc(100dvh-70px)] hidden py-16 sm:py-20"
+        class="relative overflow-hidden h-[100vh] py-16 sm:py-20"
       >
         <div class="container">
           <div class="project-tabs">
@@ -240,7 +240,7 @@
             >
               <button
                 type="button"
-                class="tab active h3"
+                class="tab active h3 text-base sm:text-2xl"
                 role="tab"
                 aria-selected="true"
                 data-index="0"
@@ -250,33 +250,33 @@
               </button>
               <button
                 type="button"
-                class="tab h3"
+                class="tab h3 text-base sm:text-2xl"
                 role="tab"
                 aria-selected="false"
                 data-index="1"
                 aria-controls="panel-1"
               >
-                <span class="text-sm">02</span>Sketch
+                <span class="text-sm">02</span>Design
               </button>
               <button
                 type="button"
-                class="tab h3"
+                class="tab h3 text-base sm:text-2xl"
                 role="tab"
                 aria-selected="false"
                 data-index="2"
                 aria-controls="panel-2"
               >
-                <span class="text-sm">03</span>Prototype
+                <span class="text-sm">03</span>Code
               </button>
               <button
                 type="button"
-                class="tab h3"
+                class="tab h3 text-base sm:text-2xl"
                 role="tab"
                 aria-selected="false"
                 data-index="3"
                 aria-controls="panel-3"
               >
-                <span class="text-sm">04</span>Code
+                <span class="text-sm">04</span>Experience
               </button>
             </div>
 
@@ -291,33 +291,36 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      We wanted visitors to arrive, glance, and leave with a
-                      clear next step — so I sketched a discovery flow that
-                      reads like a map: bold headings, bite-sized summaries, and
-                      paths that surface the most useful resources first.
+                      A simple, elegant portal for company partners to reserve
+                      sponsorship packages for the next EduHUB Live event in
+                      December. The site focuses on a streamlined reservation
+                      flow and includes the event schedule with one-click
+                      additions to Google Calendar and Apple/ICal.
                     </p>
 
                     <p class="p-body">
-                      The site shipped with a modern, interaction-forward UI
-                      that stayed true to the prototype’s intent — motion that
-                      hints at structure rather than stealing attention — and
-                      stakeholders said the discovery felt noticeably quicker.
+                      To maintain a controlled, professional partner experience,
+                      access is gated by email verification on first entry —
+                      this keeps attendee lists private and prevents public live
+                      previewing of the platform while ensuring only confirmed
+                      partners can view and book.
                     </p>
+
                     <p class="p-body">
-                      Under the hood I organised the code for growth: modular
-                      components, CMS slots for new panes and a short set of
-                      rules so editors can add content confidently.
+                      Every new access attempt and each booking triggers a
+                      notification to the organiser so outreach and follow-up
+                      remain timely and personal.
                     </p>
                   </div>
                   <div class="panel-media">
                     <img
                       src="media/project-gehOverview.webp"
-                      alt="Design process diagram"
+                      alt="Overview — eduHUB Live"
                     />
                   </div>
                 </div>
 
-                <!-- Panel 1: Sketch -->
+                <!-- Panel 1: Design -->
                 <div
                   id="panel-1"
                   class="panel"
@@ -326,35 +329,32 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      Sketching began with small stories: what does a busy user
-                      need in two taps? Wireframes became the place to test
-                      those scenarios, each card tuned to answer a single
-                      question at a glance. To make the map dependable, I
-                      introduced a repeatable card pattern: name, one-line
-                      context and a clear action.
+                      The interface adopts a minimal, sophisticated luxury
+                      aesthetic: a flat UI with crisp layouts, generous spacing,
+                      and refined typography to communicate professionalism and
+                      premium value. Dark mode is the core visual theme — deep,
+                      tactile backgrounds contrast with subtle accent tones from
+                      the established palette.
                     </p>
+
                     <p class="p-body">
-                      I kept the grid disciplined — a broad 8×7 rhythm on
-                      desktop that collapses to a tight 4×14 on mobile — so
-                      imagery and cards fall into place and feel intentional.
-                      Skeleton loaders carry the weight on slow networks so
-                      users always see progress.
-                    </p>
-                    <p class="p-body">
-                      Acceptance criteria were practical promises: lazy-load
-                      images, a modest animation budget, and CMS slots so new
-                      panes can appear without reworking templates.
+                      Branding work (the logo, colour palette and carefully
+                      chosen fonts) was selected to reinforce the luxury vibe
+                      while remaining legible and approachable. Visual
+                      treatments are intentionally restrained so the focus stays
+                      on sponsorship content and the booking journey.
                     </p>
                   </div>
                   <div class="panel-media">
                     <img
-                      src="media/project-gehSketch.webp"
-                      alt="Branding example"
+                      src="media/eduhubLive-design.webp"
+                      alt="Design — luxury flat UI"
+                      class="w-full h-full object-fit sm:w-[76%]"
                     />
                   </div>
                 </div>
 
-                <!-- Panel 2: Prototype -->
+                <!-- Panel 2: Code -->
                 <div
                   id="panel-2"
                   class="panel"
@@ -363,27 +363,36 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      Building the Paneflow prototype felt like staging a
-                      rehearsal: stakeholders stepped through timing, focus
-                      order and stacking behaviour and could say “that feels
-                      right” before a line of production code was written.
+                      The platform is built on WordPress with Elementor for
+                      flexible content assembly, plus targeted custom code to
+                      meet access-control and notification requirements.
                     </p>
+
                     <p class="p-body">
-                      Paneflow let us capture nuanced behaviours — easing,
-                      per-pane triggers and exportable HTML/CSS/JS — and it
-                      helped settle a crucial decision: when two-column panes
-                      collapse, important links stay first.
+                      Custom PHP was added to the theme's functions.php to
+                      handle secure email verification and backend hooks; a
+                      JavaScript module in the theme folder manages the
+                      client-side verification flow and calendar interactions.
+                      The verified email list is stored as a JSON file in the
+                      secured WordPress backend and is checked at sign-in.
+                    </p>
+
+                    <p class="p-body">
+                      Verification runs once per device (using local storage and
+                      token checks) to reduce friction. New access and booking
+                      events send notification emails to the organiser including
+                      partner identity and selected package.
                     </p>
                   </div>
                   <div class="panel-media">
                     <img
                       src="media/project-gehPrototype.webp"
-                      alt="Prototype diagram"
+                      alt="Code — WordPress and custom code"
                     />
                   </div>
                 </div>
 
-                <!-- Panel 3: Code -->
+                <!-- Panel 3: Experience -->
                 <div
                   id="panel-3"
                   class="panel"
@@ -392,36 +401,50 @@
                 >
                   <div class="panel-text">
                     <p class="p-body">
-                      For the build I embedded the Paneflow export inside
-                      Elementor so the crafted interactions could live alongside
-                      the CMS. Shared JS/CSS were then managed centrally so
-                      assets could be cached and updated without surprise.
+                      The user journey is short and intentional: authenticate,
+                      review curated sponsorship options, and complete a focused
+                      booking with minimal distractions. The flat UI reduces
+                      cognitive load and highlights clear actions.
                     </p>
+
                     <p class="p-body">
-                      Performance choices were pragmatic: GPU-accelerated
-                      transforms for smooth motion, IntersectionObserver to wake
-                      panes only when needed, and respect for users who prefer
-                      reduced motion. ARIA and focus management were woven into
-                      transitions so keyboard and screen-reader users never lose
-                      context.
+                      Email verification creates a trusted, partner-only
+                      environment while confirmation emails and organiser
+                      notifications close the loop transparently. Accessibility
+                      and responsiveness are built in so the booking path works
+                      reliably on desktop and mobile.
                     </p>
+
                     <p class="p-body">
-                      QA has been purposeful: Lighthouse, contrast checks and
-                      manual focus tests found the main risks. Next steps are
-                      visual-regression test and a short accessibility
-                      checklist.
+                      Overall the UX balances exclusivity with ease — partners
+                      feel welcomed into a premium, well-managed space and can
+                      make reservations quickly and confidently.
                     </p>
                   </div>
                   <div class="panel-media">
                     <img
                       src="media/project-gehCode.webp"
-                      alt="Code and performance"
+                      alt="Experience — user journey"
                     />
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- section: DISPLAY -->
+      <section
+        id="geh-display"
+        class="relative flex items-end sm:items-center justify-start text-left overflow-hidden py-16"
+      >
+        <div class="container">
+          <img
+            src="media/project-eduDisplay.webp"
+            alt="Global Education Hub display"
+            class="w-full h-auto object-cover"
+          />
         </div>
       </section>
     </main>

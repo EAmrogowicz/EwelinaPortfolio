@@ -481,6 +481,12 @@ button.btn-primary:hover .btn-text {
   background-position: center;
   background-repeat: no-repeat;
 }
+.geh-display {
+  background: url("media/project-gehDisplay.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 /* -----------------------------
    Projects
@@ -622,11 +628,7 @@ button.btn-primary:hover .btn-text {
   border-right: 1px solid var(--gray);
   text-align: right;
   justify-content: center;
-  /* reduce height by header so the sticky header doesn't overlap the last tab */
-  height: calc(100vh - var(--header-height));
-  max-height: calc(100vh - var(--header-height));
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  align-content: stretch;
 }
 .project-tabs .tab {
   -webkit-appearance: none;
@@ -651,7 +653,6 @@ button.btn-primary:hover .btn-text {
 
 .project-tabs .carousel {
   overflow: hidden;
-
   height: 100%;
   min-height: 0;
   min-height: 48rem;
