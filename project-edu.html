@@ -226,218 +226,147 @@
         </div>
       </section>
 
-      <!-- section: OVERVIEW -->
-      <section
-        id="overview"
-        class="relative overflow-hidden h-[100vh] py-16 sm:py-20"
-      >
+      <!-- section: PROJECT OVERVIEW -->
+      <section id="overview" class="relative overflow-hidden py-4 sm:py-20">
         <div class="container">
-          <div class="project-tabs">
-            <div
-              class="tabs flex flex-row flex-nowrap gap-4 sm:gap-8 items-stretch"
-              role="tablist"
-              aria-label="Design thinking tabs"
-            >
-              <button
-                type="button"
-                class="tab active h3 text-base sm:text-2xl"
-                role="tab"
-                aria-selected="true"
-                data-index="0"
-                aria-controls="panel-0"
-              >
-                <span class="text-sm">01</span>Objective
-              </button>
-              <button
-                type="button"
-                class="tab h3 text-base sm:text-2xl"
-                role="tab"
-                aria-selected="false"
-                data-index="1"
-                aria-controls="panel-1"
-              >
-                <span class="text-sm">02</span>Design
-              </button>
-              <button
-                type="button"
-                class="tab h3 text-base sm:text-2xl"
-                role="tab"
-                aria-selected="false"
-                data-index="2"
-                aria-controls="panel-2"
-              >
-                <span class="text-sm">03</span>Code
-              </button>
-              <button
-                type="button"
-                class="tab h3 text-base sm:text-2xl"
-                role="tab"
-                aria-selected="false"
-                data-index="3"
-                aria-controls="panel-3"
-              >
-                <span class="text-sm">04</span>Experience
-              </button>
-            </div>
-
-            <div class="carousel" aria-live="polite">
-              <div class="carousel-track">
-                <!-- Panel 0: Objective -->
-                <div
-                  id="panel-0"
-                  class="panel"
-                  role="tabpanel"
-                  aria-hidden="false"
-                >
-                  <div class="panel-text">
-                    <p class="p-body">
-                      A simple, elegant portal for company partners to reserve
-                      sponsorship packages for the next EduHUB Live event in
-                      December. The site focuses on a streamlined reservation
-                      flow and includes the event schedule with one-click
-                      additions to Google Calendar and Apple/ICal.
-                    </p>
-
-                    <p class="p-body">
-                      To maintain a controlled, professional partner experience,
-                      access is gated by email verification on first entry —
-                      this keeps attendee lists private and prevents public live
-                      previewing of the platform while ensuring only confirmed
-                      partners can view and book.
-                    </p>
-
-                    <p class="p-body">
-                      Every new access attempt and each booking triggers a
-                      notification to the organiser so outreach and follow-up
-                      remain timely and personal.
-                    </p>
-                  </div>
-                  <div class="panel-media">
-                    <img
-                      src="media/project-gehOverview.webp"
-                      alt="Overview — eduHUB Live"
-                    />
-                  </div>
-                </div>
-
-                <!-- Panel 1: Design -->
-                <div
-                  id="panel-1"
-                  class="panel"
-                  role="tabpanel"
-                  aria-hidden="true"
-                >
-                  <div class="panel-text">
-                    <p class="p-body">
-                      The interface adopts a minimal, sophisticated luxury
-                      aesthetic: a flat UI with crisp layouts, generous spacing,
-                      and refined typography to communicate professionalism and
-                      premium value. Dark mode is the core visual theme — deep,
-                      tactile backgrounds contrast with subtle accent tones from
-                      the established palette.
-                    </p>
-
-                    <p class="p-body">
-                      Branding work (the logo, colour palette and carefully
-                      chosen fonts) was selected to reinforce the luxury vibe
-                      while remaining legible and approachable. Visual
-                      treatments are intentionally restrained so the focus stays
-                      on sponsorship content and the booking journey.
-                    </p>
-                  </div>
-                  <div class="panel-media">
-                    <img
-                      src="media/eduhubLive-design.webp"
-                      alt="Design — luxury flat UI"
-                      class="w-full h-full object-fit sm:w-[76%]"
-                    />
-                  </div>
-                </div>
-
-                <!-- Panel 2: Code -->
-                <div
-                  id="panel-2"
-                  class="panel"
-                  role="tabpanel"
-                  aria-hidden="true"
-                >
-                  <div class="panel-text">
-                    <p class="p-body">
-                      The platform is built on WordPress with Elementor for
-                      flexible content assembly, plus targeted custom code to
-                      meet access-control and notification requirements.
-                    </p>
-
-                    <p class="p-body">
-                      Custom PHP was added to the theme's functions.php to
-                      handle secure email verification and backend hooks; a
-                      JavaScript module in the theme folder manages the
-                      client-side verification flow and calendar interactions.
-                      The verified email list is stored as a JSON file in the
-                      secured WordPress backend and is checked at sign-in.
-                    </p>
-
-                    <p class="p-body">
-                      Verification runs once per device (using local storage and
-                      token checks) to reduce friction. New access and booking
-                      events send notification emails to the organiser including
-                      partner identity and selected package.
-                    </p>
-                  </div>
-                  <div class="panel-media">
-                    <img
-                      src="media/project-gehPrototype.webp"
-                      alt="Code — WordPress and custom code"
-                    />
-                  </div>
-                </div>
-
-                <!-- Panel 3: Experience -->
-                <div
-                  id="panel-3"
-                  class="panel"
-                  role="tabpanel"
-                  aria-hidden="true"
-                >
-                  <div class="panel-text">
-                    <p class="p-body">
-                      The user journey is short and intentional: authenticate,
-                      review curated sponsorship options, and complete a focused
-                      booking with minimal distractions. The flat UI reduces
-                      cognitive load and highlights clear actions.
-                    </p>
-
-                    <p class="p-body">
-                      Email verification creates a trusted, partner-only
-                      environment while confirmation emails and organiser
-                      notifications close the loop transparently. Accessibility
-                      and responsiveness are built in so the booking path works
-                      reliably on desktop and mobile.
-                    </p>
-
-                    <p class="p-body">
-                      Overall the UX balances exclusivity with ease — partners
-                      feel welcomed into a premium, well-managed space and can
-                      make reservations quickly and confidently.
-                    </p>
-                  </div>
-                  <div class="panel-media">
-                    <img
-                      src="media/project-gehCode.webp"
-                      alt="Experience — user journey"
-                    />
-                  </div>
-                </div>
+          <!-- Objective Section -->
+          <article class="project-content-section mb-16">
+            <div class="content-grid">
+              <div class="content-text">
+                <h3 class="h3">Objective</h3>
+                <p class="p-body">
+                  A simple, elegant portal for company partners to reserve
+                  sponsorship packages for the next EduHUB Live event in
+                  December. The site focuses on a streamlined reservation flow
+                  and includes the event schedule with one-click additions to
+                  Google Calendar and Apple/ICal.
+                </p>
+                <p class="p-body">
+                  To maintain a controlled, professional partner experience,
+                  access is gated by email verification on first entry — this
+                  keeps attendee lists private and prevents public live
+                  previewing of the platform while ensuring only confirmed
+                  partners can view and book.
+                </p>
+                <p class="p-body">
+                  Every new access attempt and each booking triggers a
+                  notification to the organiser so outreach and follow-up remain
+                  timely and personal.
+                </p>
+              </div>
+              <div class="content-media">
+                <img
+                  src="media/project-eduObjective.webp"
+                  alt="Overview — eduHUB Live"
+                />
               </div>
             </div>
-          </div>
+          </article>
+
+          <!-- Design Section -->
+          <article class="project-content-section mb-16">
+            <div class="content-grid">
+              <div class="content-text">
+                <h3 class="h3">Design & Branding</h3>
+                <p class="p-body">
+                  The interface adopts a minimal, sophisticated luxury
+                  aesthetic: a flat UI with crisp layouts, generous spacing, and
+                  refined typography to communicate professionalism and premium
+                  value. Dark mode is the core visual theme — deep, tactile
+                  backgrounds contrast with subtle accent tones from the
+                  established palette.
+                </p>
+                <p class="p-body">
+                  Branding work (the logo, colour palette and carefully chosen
+                  fonts) was selected to reinforce the luxury vibe while
+                  remaining legible and approachable. Visual treatments are
+                  intentionally restrained so the focus stays on sponsorship
+                  content and the booking journey.
+                </p>
+              </div>
+              <div class="content-media">
+                <img
+                  src="media/eduhubLive-design.webp"
+                  alt="Design — luxury flat UI"
+                  class="w-full h-full object-fit sm:w-[76%]"
+                />
+              </div>
+            </div>
+          </article>
+
+          <!-- Development Section -->
+          <article class="project-content-section mb-16">
+            <div class="content-grid">
+              <div class="content-text">
+                <h3 class="h3">Development & Implementation</h3>
+                <p class="p-body">
+                  The platform is built on WordPress with Elementor for flexible
+                  content assembly, plus targeted custom code to meet
+                  access-control and notification requirements.
+                </p>
+                <p class="p-body">
+                  Custom PHP was added to the theme's functions.php to handle
+                  secure email verification and backend hooks; a JavaScript
+                  module in the theme folder manages the client-side
+                  verification flow and calendar interactions. The verified
+                  email list is stored as a JSON file in the secured WordPress
+                  backend and is checked at sign-in.
+                </p>
+                <p class="p-body">
+                  Verification runs once per device (using local storage and
+                  token checks) to reduce friction. New access and booking
+                  events send notification emails to the organiser including
+                  partner identity and selected package.
+                </p>
+              </div>
+              <div class="content-media">
+                <img
+                  src="media/project-eduCode.webp"
+                  alt="Code — WordPress and custom code"
+                />
+              </div>
+            </div>
+          </article>
+
+          <!-- User Experience Section -->
+          <article class="project-content-section">
+            <div class="content-grid">
+              <div class="content-text">
+                <h3 class="h3">User Experience</h3>
+                <p class="p-body">
+                  The user journey is short and intentional: authenticate,
+                  review curated sponsorship options, and complete a focused
+                  booking with minimal distractions. The flat UI reduces
+                  cognitive load and highlights clear actions.
+                </p>
+                <p class="p-body">
+                  Email verification creates a trusted, partner-only environment
+                  while confirmation emails and organiser notifications close
+                  the loop transparently. Accessibility and responsiveness are
+                  built in so the booking path works reliably on desktop and
+                  mobile.
+                </p>
+                <p class="p-body">
+                  Overall the UX balances exclusivity with ease — partners feel
+                  welcomed into a premium, well-managed space and can make
+                  reservations quickly and confidently.
+                </p>
+              </div>
+              <div class="content-media">
+                <!-- <img
+                  src="media/project-eduMockup.webp"
+                  alt="Experience — user journey"
+                /> -->
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
       <!-- section: DISPLAY -->
       <section
-        id="geh-display"
-        class="relative flex items-end sm:items-center justify-start text-left overflow-hidden py-16"
+        id="edu-display"
+        class="relative flex items-end sm:items-center justify-start text-left overflow-hidden pb-16"
       >
         <div class="container">
           <img

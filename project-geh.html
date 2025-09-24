@@ -226,202 +226,135 @@
         </div>
       </section>
 
-      <!-- section: OVERVIEW -->
-      <section
-        id="overview"
-        class="relative overflow-hidden h-[100vh] py-16 sm:py-20"
-      >
+      <!-- section: PROJECT OVERVIEW -->
+      <section id="overview" class="relative overflow-hidden py-4 sm:py-20">
         <div class="container">
-          <div class="project-tabs">
-            <div
-              class="tabs flex flex-row flex-nowrap gap-4 sm:gap-8 items-stretch"
-              role="tablist"
-              aria-label="Design thinking tabs"
-            >
-              <button
-                type="button"
-                class="tab active h3 text-base sm:text-2xl"
-                role="tab"
-                aria-selected="true"
-                data-index="0"
-                aria-controls="panel-0"
-              >
-                <span class="text-sm">01</span>Objective
-              </button>
-              <button
-                type="button"
-                class="tab h3 text-base sm:text-2xl"
-                role="tab"
-                aria-selected="false"
-                data-index="1"
-                aria-controls="panel-1"
-              >
-                <span class="text-sm">02</span>Sketch
-              </button>
-              <button
-                type="button"
-                class="tab h3 text-base sm:text-2xl"
-                role="tab"
-                aria-selected="false"
-                data-index="2"
-                aria-controls="panel-2"
-              >
-                <span class="text-sm">03</span>Prototype
-              </button>
-              <button
-                type="button"
-                class="tab h3 text-base sm:text-2xl"
-                role="tab"
-                aria-selected="false"
-                data-index="3"
-                aria-controls="panel-3"
-              >
-                <span class="text-sm">04</span>Code
-              </button>
-            </div>
+          <!-- Objective Section -->
+          <article class="project-content-section mb-16">
+            <div class="content-grid">
+              <div class="content-text">
+                <h3 class="h3">Objective</h3>
+                <p class="p-body">
+                  We wanted visitors to arrive, glance, and leave with a clear
+                  next step — so I sketched a discovery flow that reads like a
+                  map: bold headings, bite-sized summaries, and paths that
+                  surface the most useful resources first.
+                </p>
 
-            <div class="carousel" aria-live="polite">
-              <div class="carousel-track">
-                <!-- Panel 0: Objective -->
-                <div
-                  id="panel-0"
-                  class="panel"
-                  role="tabpanel"
-                  aria-hidden="false"
-                >
-                  <div class="panel-text">
-                    <p class="p-body">
-                      We wanted visitors to arrive, glance, and leave with a
-                      clear next step — so I sketched a discovery flow that
-                      reads like a map: bold headings, bite-sized summaries, and
-                      paths that surface the most useful resources first.
-                    </p>
-
-                    <p class="p-body">
-                      The site shipped with a modern, interaction-forward UI
-                      that stayed true to the prototype’s intent — motion that
-                      hints at structure rather than stealing attention — and
-                      stakeholders said the discovery felt noticeably quicker.
-                    </p>
-                    <p class="p-body">
-                      Under the hood I organised the code for growth: modular
-                      components, CMS slots for new panes and a short set of
-                      rules so editors can add content confidently.
-                    </p>
-                  </div>
-                  <div class="panel-media">
-                    <img
-                      src="media/project-gehOverview.webp"
-                      alt="Design process diagram"
-                    />
-                  </div>
-                </div>
-
-                <!-- Panel 1: Sketch -->
-                <div
-                  id="panel-1"
-                  class="panel"
-                  role="tabpanel"
-                  aria-hidden="true"
-                >
-                  <div class="panel-text">
-                    <p class="p-body">
-                      Sketching began with small stories: what does a busy user
-                      need in two taps? Wireframes became the place to test
-                      those scenarios, each card tuned to answer a single
-                      question at a glance. To make the map dependable, I
-                      introduced a repeatable card pattern: name, one-line
-                      context and a clear action.
-                    </p>
-                    <p class="p-body">
-                      I kept the grid disciplined — a broad 8×7 rhythm on
-                      desktop that collapses to a tight 4×14 on mobile — so
-                      imagery and cards fall into place and feel intentional.
-                      Skeleton loaders carry the weight on slow networks so
-                      users always see progress.
-                    </p>
-                    <p class="p-body">
-                      Acceptance criteria were practical promises: lazy-load
-                      images, a modest animation budget, and CMS slots so new
-                      panes can appear without reworking templates.
-                    </p>
-                  </div>
-                  <div class="panel-media">
-                    <img
-                      src="media/project-gehSketch.webp"
-                      alt="Branding example"
-                    />
-                  </div>
-                </div>
-
-                <!-- Panel 2: Prototype -->
-                <div
-                  id="panel-2"
-                  class="panel"
-                  role="tabpanel"
-                  aria-hidden="true"
-                >
-                  <div class="panel-text">
-                    <p class="p-body">
-                      Building the Paneflow prototype felt like staging a
-                      rehearsal: stakeholders stepped through timing, focus
-                      order and stacking behaviour and could say “that feels
-                      right” before a line of production code was written.
-                    </p>
-                    <p class="p-body">
-                      Paneflow let us capture nuanced behaviours — easing,
-                      per-pane triggers and exportable HTML/CSS/JS — and it
-                      helped settle a crucial decision: when two-column panes
-                      collapse, important links stay first.
-                    </p>
-                  </div>
-                  <div class="panel-media">
-                    <img
-                      src="media/project-gehPrototype.webp"
-                      alt="Prototype diagram"
-                    />
-                  </div>
-                </div>
-
-                <!-- Panel 3: Code -->
-                <div
-                  id="panel-3"
-                  class="panel"
-                  role="tabpanel"
-                  aria-hidden="true"
-                >
-                  <div class="panel-text">
-                    <p class="p-body">
-                      For the build I embedded the Paneflow export inside
-                      Elementor so the crafted interactions could live alongside
-                      the CMS. Shared JS/CSS were then managed centrally so
-                      assets could be cached and updated without surprise.
-                    </p>
-                    <p class="p-body">
-                      Performance choices were pragmatic: GPU-accelerated
-                      transforms for smooth motion, IntersectionObserver to wake
-                      panes only when needed, and respect for users who prefer
-                      reduced motion. ARIA and focus management were woven into
-                      transitions so keyboard and screen-reader users never lose
-                      context.
-                    </p>
-                    <p class="p-body">
-                      QA has been purposeful: Lighthouse, contrast checks and
-                      manual focus tests found the main risks. Next steps are
-                      visual-regression test and a short accessibility
-                      checklist.
-                    </p>
-                  </div>
-                  <div class="panel-media">
-                    <img
-                      src="media/project-gehCode.webp"
-                      alt="Code and performance"
-                    />
-                  </div>
-                </div>
+                <p class="p-body">
+                  The site shipped with a modern, interaction-forward UI that
+                  stayed true to the prototype’s intent — motion that hints at
+                  structure rather than stealing attention — and stakeholders
+                  said the discovery felt noticeably quicker.
+                </p>
+                <p class="p-body">
+                  Under the hood I organised the code for growth: modular
+                  components, CMS slots for new panes and a short set of rules
+                  so editors can add content confidently.
+                </p>
+              </div>
+              <div class="content-media">
+                <img
+                  src="media/project-gehOverview.webp"
+                  alt="Design process diagram"
+                />
               </div>
             </div>
-          </div>
+          </article>
+
+          <!-- Sketch Section -->
+          <article class="project-content-section mb-16">
+            <div class="content-grid">
+              <div class="content-text">
+                <h3 class="h3">Sketch & Wireframes</h3>
+                <p class="p-body">
+                  Sketching began with small stories: what does a busy user need
+                  in two taps? Wireframes became the place to test those
+                  scenarios, each card tuned to answer a single question at a
+                  glance. To make the map dependable, I introduced a repeatable
+                  card pattern: name, one-line context and a clear action.
+                </p>
+                <p class="p-body">
+                  I kept the grid disciplined — a broad 8×7 rhythm on desktop
+                  that collapses to a tight 4×14 on mobile — so imagery and
+                  cards fall into place and feel intentional. Skeleton loaders
+                  carry the weight on slow networks so users always see
+                  progress.
+                </p>
+                <p class="p-body">
+                  Acceptance criteria were practical promises: lazy-load images,
+                  a modest animation budget, and CMS slots so new panes can
+                  appear without reworking templates.
+                </p>
+              </div>
+              <div class="content-media">
+                <img
+                  src="media/project-gehSketch.webp"
+                  alt="Sketches and wireframes"
+                />
+              </div>
+            </div>
+          </article>
+
+          <!-- Prototype Section -->
+          <article class="project-content-section mb-16">
+            <div class="content-grid">
+              <div class="content-text">
+                <h3 class="h3">Prototype</h3>
+                <p class="p-body">
+                  Building the Paneflow prototype felt like staging a rehearsal:
+                  stakeholders stepped through timing, focus order and stacking
+                  behaviour and could say “that feels right” before a line of
+                  production code was written.
+                </p>
+                <p class="p-body">
+                  Paneflow let us capture nuanced behaviours — easing, per-pane
+                  triggers and exportable HTML/CSS/JS — and it helped settle a
+                  crucial decision: when two-column panes collapse, important
+                  links stay first.
+                </p>
+              </div>
+              <div class="content-media">
+                <img
+                  src="media/project-gehPrototype.webp"
+                  alt="Prototype design"
+                />
+              </div>
+            </div>
+          </article>
+
+          <!-- Development Section -->
+          <article class="project-content-section">
+            <div class="content-grid">
+              <div class="content-text">
+                <h3 class="h3">Development & Implementation</h3>
+                <p class="p-body">
+                  For the build I embedded the Paneflow export inside Elementor
+                  so the crafted interactions could live alongside the CMS.
+                  Shared JS/CSS were then managed centrally so assets could be
+                  cached and updated without surprise.
+                </p>
+                <p class="p-body">
+                  Performance choices were pragmatic: GPU-accelerated transforms
+                  for smooth motion, IntersectionObserver to wake panes only
+                  when needed, and respect for users who prefer reduced motion.
+                  ARIA and focus management were woven into transitions so
+                  keyboard and screen-reader users never lose context.
+                </p>
+                <p class="p-body">
+                  QA has been purposeful: Lighthouse, contrast checks and manual
+                  focus tests found the main risks. Next steps are
+                  visual-regression test and a short accessibility checklist.
+                </p>
+              </div>
+              <div class="content-media">
+                <img
+                  src="media/project-gehCode.webp"
+                  alt="Code implementation and performance"
+                />
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
