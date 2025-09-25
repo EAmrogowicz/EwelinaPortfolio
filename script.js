@@ -1,4 +1,80 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ---------- Scroll Animations (Intersection Observer) ----------
+  (function initScrollAnimations() {
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      // Immediately show all elements if reduced motion is preferred
+      const animatedElements = document.querySelectorAll(
+        '[class*="fade-in"], [class*="slide-up"]'
+      );
+      animatedElements.forEach((el) => el.classList.add("animate-in"));
+      return;
+    }
+
+    // Intersection Observer options
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px 0px -50px 0px", // Trigger when 50px from bottom of viewport
+      threshold: [0, 0.1, 0.3, 0.5],
+    };
+
+    // Create the observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const element = entry.target;
+
+        if (entry.isIntersecting) {
+          // Element is entering the viewport
+          if (!element.classList.contains("animate-in")) {
+            // Add a small delay to ensure smooth animation
+            requestAnimationFrame(() => {
+              element.classList.add("animate-in");
+            });
+          }
+        } else {
+          // Element is leaving the viewport
+          // Only remove animation if it's completely out of view
+          if (entry.intersectionRatio === 0) {
+            element.classList.remove("animate-in");
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Find and observe all elements with animation classes
+    const animationSelectors = [
+      ".fade-in",
+      ".fade-in-up",
+      ".fade-in-left",
+      ".fade-in-right",
+      ".fade-in-scale",
+      ".slide-up",
+      ".slide-up-large",
+    ];
+
+    animationSelectors.forEach((selector) => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach((el) => {
+        // Add the base animate-element class if not already present
+        if (!el.classList.contains("animate-element")) {
+          el.classList.add("animate-element");
+        }
+
+        // Start observing the element
+        observer.observe(el);
+      });
+    });
+
+    // Optional: Cleanup observer on page unload
+    window.addEventListener("beforeunload", () => {
+      observer.disconnect();
+    });
+  })();
+
   // ---------- Menu toggle (robust) ----------
   const menuToggle = document.querySelector(".menu-toggle");
   const mobileMenu = document.querySelector(".mobile-menu");

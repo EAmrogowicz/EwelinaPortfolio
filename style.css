@@ -664,6 +664,116 @@ footer {
 }
 
 /* -----------------------------
+   Scroll Animations
+   ----------------------------- */
+
+/* Base animation utilities */
+.animate-element {
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+/* Initial hidden states */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.fade-in-scale {
+  opacity: 0;
+  transform: scale(0.9) translateY(30px);
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+.slide-up-large {
+  opacity: 0;
+  transform: translateY(120px);
+}
+
+/* Active/visible states */
+.fade-in.animate-in,
+.fade-in-up.animate-in,
+.fade-in-left.animate-in,
+.fade-in-right.animate-in,
+.fade-in-scale.animate-in,
+.slide-up.animate-in,
+.slide-up-large.animate-in {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Stagger delays for sequential animations */
+.animate-delay-100 {
+  transition-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  transition-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  transition-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  transition-delay: 0.4s;
+}
+
+.animate-delay-500 {
+  transition-delay: 0.5s;
+}
+
+.animate-delay-600 {
+  transition-delay: 0.6s;
+}
+
+/* Hover enhancements for animated elements */
+.animate-element:hover {
+  transform: translateY(-2px);
+}
+
+.project-card.animate-element:hover {
+  transform: translateY(-8px);
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-element {
+    transition: none;
+  }
+
+  .fade-in,
+  .fade-in-up,
+  .fade-in-left,
+  .fade-in-right,
+  .fade-in-scale,
+  .slide-up,
+  .slide-up-large {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* -----------------------------
    Responsive adjustments
    ----------------------------- */
 /* responsive rules moved to stylesMedia.css */
